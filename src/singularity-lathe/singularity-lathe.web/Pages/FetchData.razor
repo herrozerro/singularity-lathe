@@ -1,5 +1,7 @@
 ﻿@page "/fetchdata"
-@inject HttpClient Http
+@inject Blazored.LocalStorage.ILocalStorageService localStorage
+@using Telerik.Blazor
+@using Telerik.Blazor.Components.Grid
 
 <h1>Weather forecast</h1>
 
@@ -11,39 +13,123 @@
 }
 else
 {
-    <table class="table">
-        <thead>
-            <tr>
-                <th>Date</th>
-                <th>Temp. (C)</th>
-                <th>Temp. (F)</th>
-                <th>Summary</th>
-            </tr>
-        </thead>
-        <tbody>
-            @foreach (var forecast in forecasts)
-            {
-                <tr>
-                    <td>@forecast.Date.ToShortDateString()</td>
-                    <td>@forecast.TemperatureC</td>
-                    <td>@forecast.TemperatureF</td>
-                    <td>@forecast.Summary</td>
-                </tr>
-            }
-        </tbody>
-    </table>
+    <TelerikGrid Data=@forecasts Pageable=true EditMode="inline">
+        <TelerikGridEvents>
+            <EventsManager OnUpdate="@UpdateHandler" OnEdit="@EditHandler" OnDelete="@DeleteHandler" OnCreate="@CreateHandler" OnCancel="@CancelHandler"></EventsManager>
+        </TelerikGridEvents>
+        <TelerikGridToolBar>
+            <TelerikGridCommandButton Command="Create" Icon="add">Add Employee</TelerikGridCommandButton>
+        </TelerikGridToolBar>
+
+        <TelerikGridColumns>
+            <TelerikGridColumn Field=@nameof(WeatherForecast.Date)>
+                <Template>
+                    @($"{(context as WeatherForecast).Date:d}")
+                </Template>
+            </TelerikGridColumn>
+            <TelerikGridColumn Field=@nameof(WeatherForecast.TemperatureC) />
+            <TelerikGridColumn Field=@nameof(WeatherForecast.TemperatureF) />
+            <TelerikGridColumn Field=@nameof(WeatherForecast.Summary) />
+            <TelerikGridCommandColumn>
+                <TelerikGridCommandButton Command="Update" Icon="save" ShowInEdit="true">Update</TelerikGridCommandButton>
+                <TelerikGridCommandButton Command="Edit" Icon="edit">Edit</TelerikGridCommandButton>
+                <TelerikGridCommandButton Command="Delete" Icon="delete">Delete</TelerikGridCommandButton>
+                <TelerikGridCommandButton Command="Cancel" Icon="cancel" ShowInEdit="true">Cancel</TelerikGridCommandButton>
+            </TelerikGridCommandColumn>
+        </TelerikGridColumns>
+    </TelerikGrid>
 }
 
 @functions {
-    WeatherForecast[] forecasts;
+    public void EditHandler(GridCommandEventArgs args)
+    {
+        WeatherForecast item = (WeatherForecast)args.Item;
+
+        ////prevent opening for edit based on condition
+        //if (item.TemperatureC < 3)
+        //{
+        //    args.IsCancelled = true;//the general approach for cancelling an event
+        //}
+        Console.WriteLine("Edit event is fired.");
+    }
+
+    public void UpdateHandler(GridCommandEventArgs args)
+    {
+        WeatherForecast item = (WeatherForecast)args.Item;
+
+        bool isInsert = args.IsNew;//insert or update operation
+
+        if (isInsert)
+        {
+            item.forecastId = Guid.NewGuid();
+            forecasts.Add(item);
+        }
+        else
+        {
+            var f = forecasts.First(x => x.forecastId == item.forecastId);
+            f = item;
+        }
+
+        SaveList().Wait();
+
+        Console.WriteLine("Update event is fired.");
+    }
+
+    public void DeleteHandler(GridCommandEventArgs args)
+    {
+        WeatherForecast item = (WeatherForecast)args.Item;
+
+        //perform actual data source operation here
+
+
+
+        //if you have a context added through an @inject statement, you could call its SaveChanges() method
+        //myContext.SaveChanges();
+
+        Console.WriteLine("Delete event is fired.");
+    }
+
+
+    public void CreateHandler(GridCommandEventArgs args)
+    {
+        Console.WriteLine("Create event is fired.");
+
+        //there is no Item associated with this event handler
+    }
+
+    public void CancelHandler(GridCommandEventArgs args)
+    {
+        Console.WriteLine("Cancel event is fired.");
+
+        WeatherForecast item = (WeatherForecast)args.Item;
+
+        //perform actual data source operation here (like cancel changes on a context)
+        //if you have a context added through an @inject statement, you could use something like this to abort changes
+        //foreach (var entry in myContext.ChangeTracker.Entries().Where(entry => entry.State == EntityState.Modified))
+        //{
+        //  entry.State = EntityState.Unchanged;
+        //}
+    }
+
+
+    List<WeatherForecast> forecasts = new List<WeatherForecast>();
 
     protected override async Task OnInitAsync()
     {
-        forecasts = await Http.GetJsonAsync<WeatherForecast[]>("sample-data/weather.json");
+        var items = await localStorage.GetItemAsync<List<WeatherForecast>>("list");
+
+        forecasts = items ?? new List<WeatherForecast>();
+    }
+
+    private async Task SaveList()
+    {
+        await localStorage.SetItemAsync("list", forecasts);
     }
 
     class WeatherForecast
     {
+        public Guid forecastId { get; set; }
+
         public DateTime Date { get; set; }
 
         public int TemperatureC { get; set; }
