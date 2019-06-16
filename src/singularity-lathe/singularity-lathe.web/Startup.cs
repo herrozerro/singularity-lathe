@@ -8,6 +8,7 @@ namespace singularity_lathe.web
     {
         public void ConfigureServices(IServiceCollection services)
         {
+
             services.AddTelerikBlazor();
             services.AddBlazoredLocalStorage();
         }
