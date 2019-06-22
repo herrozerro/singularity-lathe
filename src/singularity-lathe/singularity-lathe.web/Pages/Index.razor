@@ -1,6 +1,50 @@
 ﻿@page "/"
+@inject IJSRuntime JSRuntime
 
-<h1>Hello, world!</h1>
 
-Welcome to your new app.
+<MatDrawerContainer>
+    <MatDrawer Opened="@open" Mode="@MatDrawerMode.Dismissible">
 
+    </MatDrawer>
+    <MatDrawerContainer>
+        <div>
+            <MatButton OnClick="@((e) => ButtonClicked())">
+                @if (open)
+                {
+                    <span>Hide Menu</span>
+                }
+                else
+                {
+                    <span>Open Menu</span>
+                }
+            </MatButton>
+        </div>
+        <h1>Hello, world!</h1>
+
+        Welcome to your new app.
+
+        <MatButton OnClick="RunOnClick">
+            Click! <i class="fab fa-github"></i>
+        </MatButton>
+
+        <MatButton Icon="favorite"></MatButton>
+    </MatDrawerContainer>
+</MatDrawerContainer>
+
+
+
+@functions
+{
+    bool open = true;
+
+    void ButtonClicked()
+    {
+        open = !open;
+    }
+
+    public void RunOnClick(UIMouseEventArgs e)
+    {
+        JSRuntime.InvokeAsync<object>("window.alert", "Test");
+    }
+
+}
