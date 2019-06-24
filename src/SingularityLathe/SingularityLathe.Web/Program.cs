@@ -1,6 +1,6 @@
 ﻿using Microsoft.AspNetCore.Blazor.Hosting;
 
-namespace singularity_lathe.web
+namespace SingularityLathe.Web
 {
     public class Program
     {
