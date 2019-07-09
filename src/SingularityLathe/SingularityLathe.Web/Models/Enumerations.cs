@@ -5,9 +5,11 @@ using System.Threading.Tasks;
 
 namespace SingularityLathe.Web.Models
 {
-    public class Player
+    public enum StellarBodyType
     {
-        public string Name { get; set; }
-        public int Health { get; set; }
+        Star,
+        Planet,
+        Belt,
+        Moon
     }
 }

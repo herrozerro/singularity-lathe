@@ -1,6 +1,28 @@
 ﻿@page "/"
+@inject Markdig.MarkdownPipeline pipeline
+@inject Services.AdventureGeneratorService generator
 
 <div style="display:flex; flex-direction:column">
-    <div>Item 1</div>
-    <div>Item 2</div>
+    @adventure
 </div>
+
+<button class="btn btn-primary" @onclick="@GenerateAdventure">Generate!</button>
+
+@code {
+    private MarkdownPipeline pipe;
+
+    private string adventure = "Click the generate button to get adventuring!";
+
+    private void GenerateAdventure()
+    {
+        adventure = generator.GenerateAdventure();
+    }
+
+    protected override async Task OnInitAsync()
+    {
+        // The property DataRepository received an implementation
+        // of IDataAccess through dependency injection. Use
+        // DataRepository to obtain data from the server.
+        pipe = pipeline;
+    }
+}

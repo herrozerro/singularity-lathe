@@ -1,5 +1,7 @@
+using Markdig;
 using Microsoft.AspNetCore.Components.Builder;
 using Microsoft.Extensions.DependencyInjection;
+using SingularityLathe.Web.Services;
 
 namespace SingularityLathe.Web
 {
@@ -7,6 +9,8 @@ namespace SingularityLathe.Web
     {
         public void ConfigureServices(IServiceCollection services)
         {
+            services.AddSingleton<MarkdownPipeline>(new MarkdownPipelineBuilder().UseAdvancedExtensions().Build());
+            services.AddSingleton<AdventureGeneratorService>(new AdventureGeneratorService());
         }
 
         public void Configure(IComponentsApplicationBuilder app)
