@@ -13,6 +13,8 @@ namespace SingularityLathe.Web.Services
 
         private StarSystem _starSystem = new StarSystem();
 
+        private readonly Random rnd = new Random();
+
         public StarSystemGeneratorService(PlanetBuilderService planetBuilderService)
         {
             _planetBuilderService = planetBuilderService;
@@ -20,9 +22,10 @@ namespace SingularityLathe.Web.Services
 
         public StarSystemGeneratorService GenerateStar()
         {
+            _starSystem.Designation = GetRandomDesination();
             _starSystem.SystemStar = new Star
             {
-                Name = "New System",
+                Name = _starSystem.Designation + "-A",
                 OrbitOrder = 0,
                 StarClass = StarClassification.GetRandomClassification(),
             };
@@ -45,6 +48,8 @@ namespace SingularityLathe.Web.Services
                 system.Add(_planetBuilderService.BuildPlanet());
 
             }
+            var y = 1;
+            system.ForEach((x => { x.Name = _starSystem.Designation + "-" + y++; }));
 
             _starSystem.SystemStar.ChildBodies = system;
 
@@ -56,6 +61,17 @@ namespace SingularityLathe.Web.Services
             var starSystem = _starSystem;
             _starSystem = new StarSystem();
             return starSystem;
+        }
+
+        private string GetRandomDesination()
+        {
+            var des = rnd.Next(10000).ToString("0000");
+
+            string chars = "ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789";
+
+             return des + "-" + new string(Enumerable.Repeat(chars, 3)
+              .Select(s => s[rnd.Next(s.Length)]).ToArray());
+
         }
     }
 }

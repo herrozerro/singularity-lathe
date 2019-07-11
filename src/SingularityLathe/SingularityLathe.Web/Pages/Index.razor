@@ -1,18 +1,63 @@
 ﻿@page "/"
 @inject Services.AdventureGeneratorService generator
+@inject Services.StarSystemGeneratorService sGenerator
 @using Newtonsoft;
+
+<button class="btn btn-primary" @onclick="@GenerateAdventure">Generate Adventure!</button>
+
 
 <div style="display:flex; flex-direction:column">
     @adventure
 </div>
 
+
+<button class="btn btn-primary" @onclick="@GenerateStarSystem">Generate Star System!</button>
+
 <div style="display:flex; flex-direction:column">
-    @starSystem
+    @if (starSystem == null)
+    {
+        <p>Generate star system!</p>
+    }
+    else
+    {
+        <h3>Designation: @starSystem.SystemStar.Name</h3>
+        <ul>
+            <li>Class: @starSystem.SystemStar.StarClass.Class</li>
+            <li>Chromaticity @starSystem.SystemStar.StarClass.Chromaticity</li>
+            <li>Stellar Mass Max: @starSystem.SystemStar.StarClass.StellarMassMax</li>
+        </ul>
+        <p>Child Bodies</p>
+        <table>
+            <tr>
+                <th>Name</th>
+                <th>Tempature</th>
+                <th>Atmosphere</th>
+                <th>Biosphere</th>
+                <th>Population</th>
+                <th>Tech Level</th>
+            </tr>
+            @foreach (var cb in starSystem.SystemStar.ChildBodies)
+            {
+                if (cb is Models.Planet)
+                {
+                    var cp = (Models.Planet)cb;
+                    <tr>
+                        <td>@cp.Name</td>
+                        <td>@cp.Tempature</td>
+                        <td>@cp.Tempature</td>
+                        <td>@cp.Atmosphere</td>
+                        <td>@cp.Biosphere</td>
+                        <td>@cp.Population</td>
+                        <td>@cp.TechLevel</td>
+                    </tr>
+                }
+
+            }
+        </table>
+    }
 </div>
 
-<button class="btn btn-primary" @onclick="@GenerateAdventure">Generate!</button>
 
-<button class="btn btn-primary" @onclick="@GenerateStarSystem">Generate!</button>
 
 @code {
 
@@ -20,7 +65,7 @@
 
     private string adventure = "Click the generate button to get adventuring!";
 
-    private string starSystem = "";
+    private Models.StarSystem starSystem = null;
 
     private void GenerateAdventure()
     {
@@ -29,9 +74,9 @@
 
     private void GenerateStarSystem()
     {
-        var sys = StarSystemGeneratorService.GenerateStar().GenerateSystem().Build();
+        var sys = sGenerator.GenerateStar().GenerateSystem().Build();
 
-        starSystem = sys.serialize();
+        starSystem = sys;
     }
 
     protected override async Task OnInitAsync()
