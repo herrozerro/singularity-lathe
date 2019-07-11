@@ -15,16 +15,17 @@ namespace SingularityLathe.Web.Services
         {
             _planet.Biosphere = GetRandomBiosphere(rnd);
             _planet.Tempature = GetRandomTemp(rnd);
+            _planet.Atmosphere = GetRandomAtmosphere(rnd);
 
             return this;
         }
 
         public PlanetBuilderService GenerateLife()
         {
-            _planet.Population = GetRandomPopulation(rnd);
             if (_planet.Biosphere != "No native biosphere")
             {
                 _planet.Population = GetRandomPopulation(rnd);
+                _planet.TechLevel = GetRandomTechLevel(rnd);
             }
 
             return this;
@@ -86,6 +87,21 @@ namespace SingularityLathe.Web.Services
 
             return pops[rnd.Next(pops.Count)];
         }
+        private string GetRandomAtmosphere(Random rnd)
+        {
+            var pops = new List<string>();
+
+            pops.Add("Corrosive");
+            pops.Add("Inert Gas");
+            pops.Add("Airless or thin atmoshpere");
+            pops.Add("Breathable mix");
+            pops.Add("Thick atmosphere, breathable with a pressure mask");
+            pops.Add("Invasive, toxic atmosphere");
+            pops.Add("Corrosive and invasive atmoshpere");
+
+            return pops[rnd.Next(pops.Count)];
+        }
+
 
         public Planet BuildPlanet()
         {
