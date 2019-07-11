@@ -87,19 +87,9 @@ namespace SingularityLathe.Web.Services
 
             return pops[rnd.Next(pops.Count)];
         }
-        private string GetRandomAtmosphere(Random rnd)
+        private Atmosphere GetRandomAtmosphere(Random rnd)
         {
-            var pops = new List<string>();
-
-            pops.Add("Corrosive");
-            pops.Add("Inert Gas");
-            pops.Add("Airless or thin atmoshpere");
-            pops.Add("Breathable mix");
-            pops.Add("Thick atmosphere, breathable with a pressure mask");
-            pops.Add("Invasive, toxic atmosphere");
-            pops.Add("Corrosive and invasive atmoshpere");
-
-            return pops[rnd.Next(pops.Count)];
+            return Atmosphere.GetRandomAtmosphere(rnd);
         }
 
 

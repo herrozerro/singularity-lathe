@@ -77,11 +77,9 @@ namespace SingularityLathe.Web.Models
             return atmos;
         }
 
-        public static Atmosphere GetRandomAtmosphere()
+        public static Atmosphere GetRandomAtmosphere(Random rnd)
         {
             var atmos = GetAtmospheres();
-
-            var rnd = new Random();
 
             return atmos[rnd.Next(atmos.Count)];
         }
