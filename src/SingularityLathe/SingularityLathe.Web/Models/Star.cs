@@ -13,6 +13,9 @@ namespace SingularityLathe.Web.Models
         public StellarBodyType stellarBodyType { get { return StellarBodyType.Star; } }
         public IEnumerable<IStellarBody> ChildBodies { get; set; }
 
+        public decimal StellarMass { get; set; }
+        public decimal EffectiveTemp { get; set; }
+
         public StarClassification StarClass { get; set; }
     }
 

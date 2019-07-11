@@ -27,8 +27,11 @@ namespace SingularityLathe.Web.Services
             {
                 Name = _starSystem.Designation + "-A",
                 OrbitOrder = 0,
-                StarClass = StarClassification.GetRandomClassification(),
+                StarClass = StarClassification.GetRandomClassification()
             };
+
+            _starSystem.SystemStar.EffectiveTemp = rnd.Next((int)_starSystem.SystemStar.StarClass.EffectiveTempMin, (int)_starSystem.SystemStar.StarClass.EffectiveTempMax);
+            _starSystem.SystemStar.StellarMass = (decimal)(rnd.Next((int)(_starSystem.SystemStar.StarClass.StellarMassMin*100), (int)(_starSystem.SystemStar.StarClass.StellarMassMax*100)) /100.00);
 
             return this;
         }
