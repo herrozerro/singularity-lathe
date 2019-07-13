@@ -11,8 +11,8 @@ namespace SingularityLathe.Web
         {
             services.AddSingleton<MarkdownPipeline>(new MarkdownPipelineBuilder().UseAdvancedExtensions().Build());
             services.AddSingleton<AdventureGeneratorService>(new AdventureGeneratorService());
-            services.AddSingleton<PlanetBuilderService>(new PlanetBuilderService());
-            services.AddSingleton<StarSystemGeneratorService>(new StarSystemGeneratorService(new PlanetBuilderService()));
+            services.AddSingleton<PlanetBuilderService>();
+            services.AddSingleton<StarSystemGeneratorService>();
         }
 
         public void Configure(IComponentsApplicationBuilder app)

@@ -31,7 +31,7 @@ namespace SingularityLathe.Web.Services
             };
 
             _starSystem.SystemStar.EffectiveTemp = rnd.Next((int)_starSystem.SystemStar.StarClass.EffectiveTempMin, (int)_starSystem.SystemStar.StarClass.EffectiveTempMax);
-            _starSystem.SystemStar.StellarMass = (decimal)(rnd.Next((int)(_starSystem.SystemStar.StarClass.StellarMassMin*100), (int)(_starSystem.SystemStar.StarClass.StellarMassMax*100)) /100.00);
+            _starSystem.SystemStar.StellarMass = (decimal)(rnd.Next((int)(_starSystem.SystemStar.StarClass.StellarMassMin * 100), (int)(_starSystem.SystemStar.StarClass.StellarMassMax * 100)) / 100.00);
 
             return this;
         }
@@ -72,8 +72,8 @@ namespace SingularityLathe.Web.Services
 
             string chars = "ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789";
 
-             return des + "-" + new string(Enumerable.Repeat(chars, 3)
-              .Select(s => s[rnd.Next(s.Length)]).ToArray());
+            return des + "-" + new string(Enumerable.Repeat(chars, 3)
+             .Select(s => s[rnd.Next(s.Length)]).ToArray());
 
         }
     }

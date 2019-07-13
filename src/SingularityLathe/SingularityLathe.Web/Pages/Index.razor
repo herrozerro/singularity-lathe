@@ -1,15 +1,6 @@
 ﻿@page "/"
-@inject Services.AdventureGeneratorService generator
-@inject Services.StarSystemGeneratorService sGenerator
+@inject Services.StarSystemGeneratorService systemGen
 @using Newtonsoft;
-
-<button class="btn btn-primary" @onclick="@GenerateAdventure">Generate Adventure!</button>
-
-
-<div style="display:flex; flex-direction:column">
-    @adventure
-</div>
-
 
 <button class="btn btn-primary" @onclick="@GenerateStarSystem">Generate Star System!</button>
 
@@ -60,21 +51,11 @@
 
 
 @code {
-
-    private Services.StarSystemGeneratorService StarSystemGeneratorService = new Services.StarSystemGeneratorService(new Services.PlanetBuilderService());
-
-    private string adventure = "Click the generate button to get adventuring!";
-
     private Models.StarSystem starSystem = null;
-
-    private void GenerateAdventure()
-    {
-        adventure = generator.GenerateAdventure();
-    }
 
     private void GenerateStarSystem()
     {
-        var sys = sGenerator.GenerateStar().GenerateSystem().Build();
+        var sys = systemGen.GenerateStar().GenerateSystem().Build();
 
         starSystem = sys;
     }

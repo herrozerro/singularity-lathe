@@ -1,0 +1,61 @@
+﻿@page "/adventuregenerator"
+@inject Services.AdventureGeneratorService generator
+
+<style>
+    textarea {
+        width: 100%;
+    }
+
+    .textwrapper {
+        border: 1px solid #999999;
+        margin: 5px 0;
+        padding: 3px;
+    }
+</style>
+
+<div style="display: block;" id="rulesformitem" class="formitem">
+    <label for="template" id="ruleslabel">Template:</label>
+    <div class="textwrapper"><textarea id="template" @bind="template"/></div>
+    <div>Template Items: [[SUBJECT]], [[ANTAGONIST]], [[PLACE]], [[HINDRANCE]], [[VERB]]</div>
+</div>
+
+<button class="btn btn-primary" @onclick="@GenerateRandomTemplate">Random Template!</button>
+
+
+
+<button class="btn btn-primary" @onclick="@GenerateAdventure">Generate Adventure From Template!</button>
+
+<button class="btn btn-primary" @onclick="@GenerateRandomAdventure">Generate Random Adventure!</button>
+
+
+<div style="display:flex; flex-direction:column">
+    @adventure
+</div>
+
+
+@code {
+    private string template = "";
+    private string adventure = "Click the generate button to get adventuring!";
+
+    private void GenerateAdventure()
+    {
+        adventure = generator.GenerateAdventure(template);
+    }
+
+    private void GenerateRandomAdventure()
+    {
+        adventure = generator.GenerateAdventure(template);
+    }
+
+    private void GenerateRandomTemplate()
+    {
+        template = generator.GetRandomTemplate();
+    }
+
+    protected override async Task OnInitAsync()
+    {
+        template = generator.GetRandomTemplate();
+    }
+
+
+}

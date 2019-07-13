@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 
 namespace SingularityLathe.Web.Services
@@ -14,6 +15,7 @@ namespace SingularityLathe.Web.Services
         private List<string> places = new List<string>();
         private List<string> hindrances = new List<string>();
         private List<string> antagonists = new List<string>();
+        private List<string> templates = new List<string>();
 
         public AdventureGeneratorService()
         {
@@ -200,21 +202,61 @@ namespace SingularityLathe.Web.Services
             antagonists.Add("Curse");
             antagonists.Add("Parasite");
             antagonists.Add("Adventurers");
+
+            templates.Add("The Adventurers must [[VERB]] the [[SUBJECT]] in the [[PLACE]], while dealing with a [[HINDRANCE]] and opposing the [[ANTAGONIST]].");
+            templates.Add("The Adventurers must [[VERB]], while dealing with a [[HINDRANCE]] and opposing [[ANTAGONIST]].");
+            templates.Add("[[ANTAGONIST]] has stolen the [[SUBJECT]] and the Adventurers must get it back.");
+            templates.Add("[[SUBJECT]] have lost their [[PLACE]] to the [[ANTAGONIST]] and the Adventurers must [[VERB]] to get it back.");
+            //templates.Add("");
+        }
+
+        public string GetRandomTemplate()
+        {
+            return templates[rnd.Next(templates.Count())];
         }
 
         public string GenerateAdventure()
         {
-            string VERB = verbs[rnd.Next(verbs.Count())];
-            string SUBJECT = subjcts[rnd.Next(subjcts.Count())];
-            string PLACE = places[rnd.Next(places.Count())];
-            string HINDRANCE = hindrances[rnd.Next(hindrances.Count())];
-            string ANTAGONIST = antagonists[rnd.Next(antagonists.Count())];
+            return GenerateAdventure(GetRandomTemplate());
+        }
 
-            string adventure = $"The Adventurers must {VERB} the {SUBJECT} in the {PLACE}, while dealing with a {HINDRANCE} and opposing the {ANTAGONIST}.";
+        public string GenerateAdventure(string adventure)
+        {
+
+            var regex = new Regex(@"\[\[.*?\]\]");
+
+            var matches = regex.Matches(adventure);
+
+            foreach (Match m in matches)
+            {
+                var replacer = new Regex(m.Value);
+
+                string replace = "";
+
+                switch (m.Value)
+                {
+                    case "[[VERB]]":
+                        replace = verbs[rnd.Next(verbs.Count())];
+                        break;
+                    case "[[SUBJECT]]":
+                        replace = subjcts[rnd.Next(subjcts.Count())];
+                        break;
+                    case "[[PLACE]]":
+                        replace = places[rnd.Next(places.Count())];
+                        break;
+                    case "[[HINDRANCE]]":
+                        replace = hindrances[rnd.Next(hindrances.Count())];
+                        break;
+                    case "[[ANTAGONIST]]":
+                        replace = antagonists[rnd.Next(antagonists.Count())];
+                        break;
+                }
+
+                adventure = regex.Replace(adventure, replace, 1);
+            }
 
             return adventure;
         }
-
 
     }
 }
