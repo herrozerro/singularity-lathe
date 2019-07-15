@@ -15,20 +15,19 @@
 
 <div style="display: block;" id="rulesformitem" class="formitem">
     <label for="template" id="ruleslabel">Template:</label>
-    <div class="textwrapper"><textarea id="template" @bind="template"/></div>
-    <div>Template Items: [[SUBJECT]], [[ANTAGONIST]], [[PLACE]], [[HINDRANCE]], [[VERB]]</div>
+    <div>Template Keywords: [[SUBJECT]], [[ANTAGONIST]], [[PLACE]], [[HINDRANCE]], [[VERB]]</div>
+    <div class="textwrapper"><textarea id="template" @bind="template" /></div>
 </div>
 
-<button class="btn btn-primary" @onclick="@GenerateRandomTemplate">Random Template!</button>
+<div>
+    <button class="btn btn-primary" @onclick="@GenerateRandomTemplate">Random Template!</button>
 
+    <button class="btn btn-primary" @onclick="@GenerateAdventure">Generate Adventure From Template!</button>
 
+    <button class="btn btn-primary" @onclick="@GenerateRandomAdventure">Generate Random Adventure!</button>
+</div>
 
-<button class="btn btn-primary" @onclick="@GenerateAdventure">Generate Adventure From Template!</button>
-
-<button class="btn btn-primary" @onclick="@GenerateRandomAdventure">Generate Random Adventure!</button>
-
-
-<div style="display:flex; flex-direction:column">
+<div style="display:flex; flex-direction:column; border: 1px solid black;">
     @adventure
 </div>
 

@@ -1,6 +1,5 @@
 ﻿@page "/"
 @inject Services.StarSystemGeneratorService systemGen
-@using Newtonsoft;
 
 <button class="btn btn-primary" @onclick="@GenerateStarSystem">Generate Star System!</button>
 
@@ -48,14 +47,18 @@
     }
 </div>
 
+@systemstring
 
 
 @code {
     private Models.StarSystem starSystem = null;
 
+    private string systemstring = "";
     private void GenerateStarSystem()
     {
         var sys = systemGen.GenerateStar().GenerateSystem().Build();
+
+        //systemstring = sys.serialize();
 
         starSystem = sys;
     }

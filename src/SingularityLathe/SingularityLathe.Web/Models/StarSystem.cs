@@ -20,7 +20,7 @@ namespace SingularityLathe.Web.Models
 
         public string serialize()
         {
-            return Newtonsoft.Json.JsonConvert.SerializeObject(this);
+            return System.Text.Json.Serialization.JsonSerializer.ToString(this,typeof(StarSystem));
         }
     }
 }
