@@ -1,5 +1,6 @@
 ﻿@page "/"
 @inject Services.StarSystemGeneratorService systemGen
+@inject IModalService Modal
 
 <button class="btn btn-primary" @onclick="@GenerateStarSystem">Generate Star System!</button>
 
@@ -63,7 +64,13 @@
         starSystem = sys;
     }
 
+    private void ShowPlanetModal()
+    {
+
+    }
+
     protected override async Task OnInitAsync()
     {
+
     }
 }

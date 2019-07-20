@@ -1,0 +1,20 @@
+﻿@inject Services.TestService testService
+
+<ul>
+    @foreach (var item in testService.testStrings.OrderByDescending(x=>x))
+    {
+        <li>@item</li>
+    }
+</ul>
+
+@code{
+    //protected void Refresh()
+    //{
+    //    StateHasChanged();
+    //}
+
+    protected override async Task OnInitAsync()
+    {
+        testService.OnListCountChanged += StateHasChanged;
+    }
+}

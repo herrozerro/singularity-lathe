@@ -1,0 +1,38 @@
+﻿@page "/test"
+@using SingularityLathe.Web.Components
+@inject Services.TestService testService
+
+
+<input type="text" @bind="addString" />
+<button @onclick="@AddItem">Add Item!</button>
+
+@*<ul>
+    @foreach (var item in testService.testStrings.OrderBy(x => x))
+    {
+        <li>@item</li>
+    }
+</ul>*@
+
+<TestServiceRender />
+
+<TestServiceRenderOrdered />
+
+@code {
+
+    public string addString = "";
+
+    private void AddItem()
+    {
+        testService.AddListItem(addString);
+    }
+
+    protected void Refresh()
+    {
+        StateHasChanged();
+    }
+
+    protected override async Task OnInitAsync()
+    {
+        testService.OnListCountChanged += StateHasChanged;
+    }
+}

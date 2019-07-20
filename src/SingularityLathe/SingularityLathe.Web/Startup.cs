@@ -1,3 +1,4 @@
+using Blazored.Modal;
 using Markdig;
 using Microsoft.AspNetCore.Components.Builder;
 using Microsoft.Extensions.DependencyInjection;
@@ -10,9 +11,11 @@ namespace SingularityLathe.Web
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddSingleton<MarkdownPipeline>(new MarkdownPipelineBuilder().UseAdvancedExtensions().Build());
-            services.AddSingleton<AdventureGeneratorService>(new AdventureGeneratorService());
+            services.AddSingleton<AdventureGeneratorService>();
             services.AddSingleton<PlanetBuilderService>();
             services.AddSingleton<StarSystemGeneratorService>();
+            services.AddSingleton<TestService>();
+            services.AddBlazoredModal();
         }
 
         public void Configure(IComponentsApplicationBuilder app)
