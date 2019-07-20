@@ -1,20 +1,17 @@
-﻿@inject Services.TestService testService
+﻿@inject IModalService ModalService
+<p style="white-space: pre-wrap;">@planet.Name</p>
+<p style="white-space: pre-wrap;">@planet.Atmosphere.AtmosphereType</p>
+<input @bind="planet.Biosphere" />
 
-<ul>
-    @foreach (var item in testService.testStrings.OrderByDescending(x=>x))
+
+@functions {
+    [CascadingParameter] ModalParameters Parameters { get; set; }
+    Planet planet { get; set; }
+
+    protected override void OnInit()
     {
-        <li>@item</li>
-    }
-</ul>
+        Console.WriteLine("Got In here!");
 
-@code{
-    //protected void Refresh()
-    //{
-    //    StateHasChanged();
-    //}
-
-    protected override async Task OnInitAsync()
-    {
-        testService.OnListCountChanged += StateHasChanged;
+        planet = Parameters.Get<Planet>("PlanetInfo");
     }
 }

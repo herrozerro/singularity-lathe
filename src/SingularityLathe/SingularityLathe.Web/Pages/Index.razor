@@ -21,6 +21,7 @@
         <p>Child Bodies</p>
         <table>
             <tr>
+                <th>Details</th>
                 <th>Name</th>
                 <th>Tempature</th>
                 <th>Atmosphere</th>
@@ -34,6 +35,7 @@
                 {
                     var cp = (Models.Planet)cb;
                     <tr>
+                        <td><button @onclick="@(()=> ShowPlanetModal(cp))">Details</button></td>
                         <td>@cp.Name</td>
                         <td>@cp.Tempature</td>
                         <td>@cp.Atmosphere.AtmosphereType</td>
@@ -64,9 +66,13 @@
         starSystem = sys;
     }
 
-    private void ShowPlanetModal()
+    private void ShowPlanetModal(Planet p)
     {
+        Console.WriteLine(p.Name);
 
+        var modalParameters = new ModalParameters();
+        modalParameters.Add("PlanetInfo", p);
+        Modal.Show(p.Name, typeof(Components.PlanetInfo), modalParameters);
     }
 
     protected override async Task OnInitAsync()
