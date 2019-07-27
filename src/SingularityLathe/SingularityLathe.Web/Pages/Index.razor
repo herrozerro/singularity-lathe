@@ -12,6 +12,7 @@
     else
     {
         <h3>Designation: @starSystem.SystemStar.Name</h3>
+        <button @onclick="@(()=> ShowExport())">Export</button>
         <ul>
             <li>Class: @starSystem.SystemStar.StarClass.Class</li>
             <li>Chromaticity: @starSystem.SystemStar.StarClass.Chromaticity</li>
@@ -73,6 +74,13 @@
         var modalParameters = new ModalParameters();
         modalParameters.Add("PlanetInfo", p);
         Modal.Show(p.Name, typeof(Components.PlanetInfo), modalParameters);
+    }
+
+    private void ShowExport()
+    {
+        var modalParameters = new ModalParameters();
+        modalParameters.Add("StarSystem", starSystem);
+        Modal.Show("Export", typeof(Components.SystemExport), modalParameters);
     }
 
     protected override async Task OnInitAsync()
