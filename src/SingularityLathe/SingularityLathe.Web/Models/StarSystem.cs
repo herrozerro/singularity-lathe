@@ -20,7 +20,7 @@ namespace SingularityLathe.Web.Models
 
         public string serialize()
         {
-            return System.Text.Json.JsonSerializer.Serialize(this,typeof(StarSystem));
+            return System.Text.Json.JsonSerializer.Serialize(this,typeof(StarSystem),new System.Text.Json.JsonSerializerOptions() { WriteIndented = true, MaxDepth = 6 });
         }
     }
 }

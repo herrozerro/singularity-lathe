@@ -11,7 +11,7 @@ namespace SingularityLathe.Web.Models
         public string Name { get; set; }
         public int OrbitOrder { get; set; }
         public StellarBodyType stellarBodyType { get { return StellarBodyType.Star; } }
-        public IEnumerable<IStellarBody> ChildBodies { get; set; }
+        public List<IStellarBody> ChildBodies { get; set; }
 
         public decimal StellarMass { get; set; }
         public decimal EffectiveTemp { get; set; }

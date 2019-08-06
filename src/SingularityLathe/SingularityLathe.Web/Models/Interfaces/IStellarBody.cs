@@ -10,6 +10,6 @@ namespace SingularityLathe.Web.Models.Interfaces
         string Name { get; set; }
         int OrbitOrder { get; set; }
         StellarBodyType stellarBodyType { get; }
-        IEnumerable<IStellarBody> ChildBodies { get; set; }
+        List<IStellarBody> ChildBodies { get; set; }
     }
 }
