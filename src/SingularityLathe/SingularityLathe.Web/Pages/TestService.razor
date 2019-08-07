@@ -6,13 +6,6 @@
 <input type="text" @bind="addString" />
 <button @onclick="@AddItem">Add Item!</button>
 
-@*<ul>
-    @foreach (var item in testService.testStrings.OrderBy(x => x))
-    {
-        <li>@item</li>
-    }
-</ul>*@
-
 <TestServiceRender />
 
 <TestServiceRenderOrdered />

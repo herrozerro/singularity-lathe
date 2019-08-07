@@ -11,8 +11,6 @@
 
     protected override void OnInit()
     {
-        Console.WriteLine("Got In here!");
-
         system = Parameters.Get<StarSystem>("StarSystem");
 
         ExportString = system.serialize();
