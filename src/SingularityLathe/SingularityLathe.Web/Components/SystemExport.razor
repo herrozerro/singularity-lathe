@@ -9,7 +9,7 @@
     StarSystem system { get; set; }
     string ExportString { get; set; }
 
-    protected override void OnInit()
+    protected override void OnInitialized()
     {
         system = Parameters.Get<StarSystem>("StarSystem");
 
