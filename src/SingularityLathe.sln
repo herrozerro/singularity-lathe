@@ -1,0 +1,37 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.29324.140
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SingularityLathe.WPF", "SingularityLathe.WPF\SingularityLathe.WPF.csproj", "{B315DAC9-4074-4860-8AB6-97B3DBAC94A9}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SingularityLathe.Forge", "SingularityLathe.Forge\SingularityLathe.Forge.csproj", "{B7E387A0-D722-4F53-9290-CED27198B644}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SingularityLathe.Data", "SingularityLathe.Data\SingularityLathe.Data.csproj", "{B7F21088-AC9B-4110-A6BA-D19AD3373F5B}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{B315DAC9-4074-4860-8AB6-97B3DBAC94A9}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B315DAC9-4074-4860-8AB6-97B3DBAC94A9}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B315DAC9-4074-4860-8AB6-97B3DBAC94A9}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B315DAC9-4074-4860-8AB6-97B3DBAC94A9}.Release|Any CPU.Build.0 = Release|Any CPU
+		{B7E387A0-D722-4F53-9290-CED27198B644}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B7E387A0-D722-4F53-9290-CED27198B644}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B7E387A0-D722-4F53-9290-CED27198B644}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B7E387A0-D722-4F53-9290-CED27198B644}.Release|Any CPU.Build.0 = Release|Any CPU
+		{B7F21088-AC9B-4110-A6BA-D19AD3373F5B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B7F21088-AC9B-4110-A6BA-D19AD3373F5B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B7F21088-AC9B-4110-A6BA-D19AD3373F5B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B7F21088-AC9B-4110-A6BA-D19AD3373F5B}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {0ED5A6E3-9F61-42AF-90D9-16D6ED0CF711}
+	EndGlobalSection
+EndGlobal
