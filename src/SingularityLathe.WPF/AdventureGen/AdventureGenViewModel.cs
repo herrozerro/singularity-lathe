@@ -8,7 +8,7 @@ using SingularityLathe.Forge.AdventureForge;
 
 namespace SingularityLathe.WPF.AdventureGen
 {
-    class AdventureGenViewModel : INotifyPropertyChanged
+    public class AdventureGenViewModel : INotifyPropertyChanged
     {
         public event PropertyChangedEventHandler PropertyChanged;
 

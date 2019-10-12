@@ -33,14 +33,17 @@ namespace SingularityLathe.WPF
 
             ServiceProvider = serviceCollection.BuildServiceProvider();
 
-            var mainWindow = ServiceProvider.GetRequiredService<MainWindow>();
-            mainWindow.Show();
+            //var mainWindow = ServiceProvider.GetRequiredService<MainWindow>();
+            //mainWindow.Show();
         }
 
         private void ConfigureServices(IServiceCollection services)
         {
-            // ...
+            services.AddTransient(typeof(AdventureGen.AdventureGen));
+            services.AddTransient(typeof(AdventureGen.AdventureGenViewModel));
 
+
+            
             services.AddTransient(typeof(MainWindow));
         }
     }
