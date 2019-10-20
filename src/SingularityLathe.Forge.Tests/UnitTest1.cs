@@ -1,4 +1,5 @@
 using NUnit.Framework;
+using Moq;
 
 namespace SingularityLathe.Forge.Tests
 {

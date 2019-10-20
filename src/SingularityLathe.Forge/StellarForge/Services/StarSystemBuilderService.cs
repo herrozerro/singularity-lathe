@@ -1,12 +1,13 @@
 ﻿using SingularityLathe.Forge.Interfaces;
+using SingularityLathe.Forge.StellarForge.Bodies;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 
-namespace SingularityLathe.Forge.StellarForge
+namespace SingularityLathe.Forge.StellarForge.Services
 {
-    public class StarSystemGeneratorService
+    public class StarSystemBuilderService
     {
         private readonly PlanetBuilderService _planetBuilderService = null;
 
@@ -14,12 +15,12 @@ namespace SingularityLathe.Forge.StellarForge
 
         private readonly Random rnd = new Random();
 
-        public StarSystemGeneratorService(PlanetBuilderService planetBuilderService)
+        public StarSystemBuilderService(PlanetBuilderService planetBuilderService)
         {
             _planetBuilderService = planetBuilderService;
         }
 
-        public StarSystemGeneratorService GenerateStar()
+        public StarSystemBuilderService GenerateStar()
         {
             _starSystem.Designation = GetRandomDesination();
             _starSystem.SystemStar = new Star
@@ -35,7 +36,7 @@ namespace SingularityLathe.Forge.StellarForge
             return this;
         }
 
-        public StarSystemGeneratorService GenerateSystem()
+        public StarSystemBuilderService GenerateSystem()
         {
             var system = new List<IStellarBody>();
             var rnd = new Random();
@@ -44,8 +45,7 @@ namespace SingularityLathe.Forge.StellarForge
 
             for (int i = 1; i < systemsize; i++)
             {
-                _planetBuilderService.GeneratePhysicalProperties();
-                _planetBuilderService.GenerateLife();
+                _planetBuilderService.GeneratePlanet();
 
                 system.Add(_planetBuilderService.BuildPlanet());
 

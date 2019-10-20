@@ -2,8 +2,9 @@
 using System.Collections.Generic;
 using System.Text;
 using Newtonsoft.Json;
+using SingularityLathe.Forge.StellarForge.Bodies;
 
-namespace SingularityLathe.Forge
+namespace SingularityLathe.Forge.StellarForge
 {
     public class StarSystem
     {
@@ -15,7 +16,7 @@ namespace SingularityLathe.Forge
 
         }
 
-        public string serialize()
+        public string Serialize()
         {
             return JsonConvert.SerializeObject(this,Formatting.Indented, new JsonSerializerSettings() {  TypeNameHandling = TypeNameHandling.All });
         }
