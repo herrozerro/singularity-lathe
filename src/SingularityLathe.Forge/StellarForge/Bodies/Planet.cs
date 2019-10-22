@@ -1,6 +1,7 @@
 ﻿using SingularityLathe.Forge.Interfaces;
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Text;
 
 namespace SingularityLathe.Forge.StellarForge.Bodies
@@ -9,8 +10,9 @@ namespace SingularityLathe.Forge.StellarForge.Bodies
     {
         public string Name { get; set; }
         public int OrbitOrder { get; set; }
-        public StellarBodyType stellarBodyType { get { return StellarBodyType.Planet; } }
+        public StellarBodyType StellarBodyType { get { return StellarBodyType.Planet; } }
         public List<IStellarBody> ChildBodies { get; set; }
+        public List<string> Anomalies { get; set; }
 
         public Atmosphere Atmosphere { get; set; }
 
@@ -98,7 +100,7 @@ namespace SingularityLathe.Forge.StellarForge.Bodies
         public string Description { get; set; }
         public double LifeWeight { get; set; }
 
-        public static Tempature GetRandomTemperature(Random rnd)
+        public static List<Tempature> GetTempatures()
         {
             var temps = new List<Tempature>
             {
@@ -145,6 +147,13 @@ namespace SingularityLathe.Forge.StellarForge.Bodies
                 }
             };
 
+            return temps;
+        } 
+
+        public static Tempature GetRandomTemperature(Random rnd)
+        {
+            var temps = GetTempatures();
+
             return temps[rnd.Next(temps.Count)];
         }
     }
@@ -155,9 +164,9 @@ namespace SingularityLathe.Forge.StellarForge.Bodies
 
         public string Description { get; set; }
 
-        public static BioSphere GetRandomBiosphere(Random rnd)
+        public static List<BioSphere> GetBioSpheres()
         {
-            var bios = new List<IWeightedItem>
+            var bios = new List<BioSphere>
             {
                 new BioSphere()
                 {
@@ -195,6 +204,13 @@ namespace SingularityLathe.Forge.StellarForge.Bodies
                     ItemWeight = 5
                 }
             };
+
+            return bios;
+        }
+
+        public static BioSphere GetRandomBiosphere(Random rnd)
+        {
+            var bios = GetBioSpheres().Select(x => (IWeightedItem)x).ToList();
             return (BioSphere)bios.GetRandomWeightedItem(rnd);
         }
     }
@@ -204,9 +220,9 @@ namespace SingularityLathe.Forge.StellarForge.Bodies
         public int ItemWeight { get; set; }
         public string Description { get; set; }
 
-        public static Population GetRandomPopulation(Random rnd)
+        public static List<Population> GetPopulations()
         {
-            var pops = new List<IWeightedItem>
+            var pops = new List<Population>
             {
                 new Population()
                 {
@@ -244,6 +260,14 @@ namespace SingularityLathe.Forge.StellarForge.Bodies
                     ItemWeight = 5
                 }
             };
+
+            return pops;
+        }
+
+        public static Population GetRandomPopulation(Random rnd)
+        {
+            var pops = GetPopulations().Select(x => (IWeightedItem)x).ToList();
+
             return (Population)pops.GetRandomWeightedItem(rnd);
         }
     }
@@ -253,9 +277,9 @@ namespace SingularityLathe.Forge.StellarForge.Bodies
         public int ItemWeight { get; set; }
         public string Description { get; set; }
 
-        public static TechLevel GetRandomPopulation(Random rnd)
+        public static List<TechLevel> GetTechLevels()
         {
-            var techs = new List<IWeightedItem>
+            var techs = new List<TechLevel>
             {
                 new TechLevel()
                 {
@@ -293,6 +317,14 @@ namespace SingularityLathe.Forge.StellarForge.Bodies
                     ItemWeight = 5
                 }
             };
+
+            return techs;
+        }
+
+        public static TechLevel GetRandomPopulation(Random rnd)
+        {
+            var techs = GetTechLevels().Select(x => (IWeightedItem)x).ToList();
+            
             return (TechLevel)techs.GetRandomWeightedItem(rnd);
         }
     }

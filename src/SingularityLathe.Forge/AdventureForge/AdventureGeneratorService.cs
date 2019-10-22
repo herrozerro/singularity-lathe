@@ -8,14 +8,14 @@ namespace SingularityLathe.Forge.AdventureForge
 {
     public class AdventureGeneratorService
     {
-        private Random rnd = new Random();
+        private readonly Random rnd = new Random();
 
-        private List<string> verbs = new List<string>();
-        private List<string> subjcts = new List<string>();
-        private List<string> places = new List<string>();
-        private List<string> hindrances = new List<string>();
-        private List<string> antagonists = new List<string>();
-        private List<string> templates = new List<string>();
+        private readonly List<string> verbs = new List<string>();
+        private readonly List<string> subjcts = new List<string>();
+        private readonly List<string> places = new List<string>();
+        private readonly List<string> hindrances = new List<string>();
+        private readonly List<string> antagonists = new List<string>();
+        private readonly List<string> templates = new List<string>();
 
         public AdventureGeneratorService()
         {

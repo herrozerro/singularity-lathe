@@ -8,7 +8,8 @@ namespace SingularityLathe.Forge.Interfaces
     {
         string Name { get; set; }
         int OrbitOrder { get; set; }
-        StellarBodyType stellarBodyType { get; }
+        StellarBodyType StellarBodyType { get; }
         List<IStellarBody> ChildBodies { get; set; }
+        List<string> Anomalies { get; set; }
     }
 }
