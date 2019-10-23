@@ -50,7 +50,7 @@ namespace SingularityLathe.WPF.AdventureGen
                 return;
             }
 
-            adventureGeneratorService = new AdventureGeneratorService();
+            adventureGeneratorService = new AdventureGeneratorService(new Forge.Services.MadLibService(new Random()));
             AdventureTemplate = adventureGeneratorService.GetRandomTemplate();
         }
 

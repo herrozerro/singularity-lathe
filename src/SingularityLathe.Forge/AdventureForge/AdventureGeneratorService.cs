@@ -1,4 +1,5 @@
-﻿using System;
+﻿using SingularityLathe.Forge.Services;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -9,205 +10,232 @@ namespace SingularityLathe.Forge.AdventureForge
     public class AdventureGeneratorService
     {
         private readonly Random rnd = new Random();
-
-        private readonly List<string> verbs = new List<string>();
-        private readonly List<string> subjcts = new List<string>();
-        private readonly List<string> places = new List<string>();
-        private readonly List<string> hindrances = new List<string>();
-        private readonly List<string> antagonists = new List<string>();
+        private readonly MadLibService _madLibService = null;
         private readonly List<string> templates = new List<string>();
 
-        public AdventureGeneratorService()
+
+        public AdventureGeneratorService(MadLibService madLibService)
         {
-            verbs.Add("Attack");
-            verbs.Add("Rescue");
-            verbs.Add("Escort");
-            verbs.Add("Investigate");
-            verbs.Add("Aid");
-            verbs.Add("Transport");
-            verbs.Add("Steal");
-            verbs.Add("Fight");
-            verbs.Add("Blackmail");
-            verbs.Add("Hide");
-            verbs.Add("Shelter");
-            verbs.Add("Trick");
-            verbs.Add("Negotiate");
-            verbs.Add("Defend");
-            verbs.Add("Retrieve");
-            verbs.Add("Overcome");
-            verbs.Add("Invade");
-            verbs.Add("Kill");
-            verbs.Add("Capture");
-            verbs.Add("Free");
-            verbs.Add("Secure");
-            verbs.Add("Heal");
-            verbs.Add("Trade");
-            verbs.Add("Scare");
-            verbs.Add("Hunt");
-            verbs.Add("Find");
-            verbs.Add("Defend");
-            verbs.Add("Prevent");
-            verbs.Add("Cause");
-            verbs.Add("Serve");
-            verbs.Add("Take");
-            verbs.Add("Bargain");
-            verbs.Add("Explore");
-            verbs.Add("Sabotage");
-            verbs.Add("Kidnap");
-            verbs.Add("Lead");
-
-            subjcts.Add("Human");
-            subjcts.Add("Fey");
-            subjcts.Add("Dwarf");
-            subjcts.Add("Goblin");
-            subjcts.Add("Salimar");
-            subjcts.Add("Treefolk");
-            subjcts.Add("Karhu");
-            subjcts.Add("Lizardfolk");
-            subjcts.Add("Royalty");
-            subjcts.Add("Priest");
-            subjcts.Add("Wizard");
-            subjcts.Add("Scribe");
-            subjcts.Add("Monster");
-            subjcts.Add("Animal");
-            subjcts.Add("Pirate");
-            subjcts.Add("Bandit");
-            subjcts.Add("Magic Item");
-            subjcts.Add("Enemy");
-            subjcts.Add("Passenger");
-            subjcts.Add("Riddle");
-            subjcts.Add("Merchandise");
-            subjcts.Add("Contraband");
-            subjcts.Add("Performer");
-            subjcts.Add("Caravan");
-            subjcts.Add("Merchant");
-            subjcts.Add("Thief");
-            subjcts.Add("Warrior");
-            subjcts.Add("Healer");
-            subjcts.Add("Peasant");
-            subjcts.Add("Begger");
-            subjcts.Add("Traveler");
-            subjcts.Add("Inkeeper");
-            subjcts.Add("Ghost");
-            subjcts.Add("City Watch");
-            subjcts.Add("Witness");
-            subjcts.Add("Alchemist");
-
-            places.Add("Mountain Top");
-            places.Add("Ruins");
-            places.Add("Ocean");
-            places.Add("Desert");
-            places.Add("Island");
-            places.Add("Canyon");
-            places.Add("Mountain Pass");
-            places.Add("Temple");
-            places.Add("Ice Cave");
-            places.Add("Volcano");
-            places.Add("Forest");
-            places.Add("Whirlpool");
-            places.Add("Sunken City");
-            places.Add("Subterranean City");
-            places.Add("Floating Fortress");
-            places.Add("Airship");
-            places.Add("Fortress");
-            places.Add("Market");
-            places.Add("Tower");
-            places.Add("City Jail");
-            places.Add("Bridge");
-            places.Add("Sewers");
-            places.Add("Docks");
-            places.Add("Dungeon");
-            places.Add("Graveyard");
-            places.Add("Gambling House");
-            places.Add("Faerie Realm");
-            places.Add("Land of Dreams");
-            places.Add("Other Dimension");
-            places.Add("Castle");
-            places.Add("Monastery");
-            places.Add("Mine");
-            places.Add("Enemy Territory");
-            places.Add("Dragon's Den");
-            places.Add("Labyrinth");
-
-            hindrances.Add("Ally");
-            hindrances.Add("Betrayal");
-            hindrances.Add("Love");
-            hindrances.Add("Broken Promise");
-            hindrances.Add("Deception");
-            hindrances.Add("Rival");
-            hindrances.Add("Mentor");
-            hindrances.Add("Family");
-            hindrances.Add("Attack");
-            hindrances.Add("Trap");
-            hindrances.Add("Physical Illness");
-            hindrances.Add("Weather");
-            hindrances.Add("Finances");
-            hindrances.Add("Theft");
-            hindrances.Add("Spy");
-            hindrances.Add("Double Agent");
-            hindrances.Add("Revenge");
-            hindrances.Add("Mental Illness");
-            hindrances.Add("Red Herring");
-            hindrances.Add("Transportation");
-            hindrances.Add("Hostage");
-            hindrances.Add("Kidnapping");
-            hindrances.Add("Assassination");
-            hindrances.Add("City Watch");
-            hindrances.Add("Greed");
-            hindrances.Add("Trust");
-            hindrances.Add("Hatred");
-            hindrances.Add("Jealousy");
-            hindrances.Add("Bad Luck");
-            hindrances.Add("Pride");
-            hindrances.Add("Laziness");
-            hindrances.Add("Lust");
-            hindrances.Add("Gluttony");
-            hindrances.Add("Neglect");
-            hindrances.Add("Forgetfulness");
-            hindrances.Add("Ignorance");
-
-            antagonists.Add("City Watch");
-            antagonists.Add("City Leader");
-            antagonists.Add("Spy");
-            antagonists.Add("Politics");
-            antagonists.Add("Moneylender");
-            antagonists.Add("Scandal");
-            antagonists.Add("Bandits");
-            antagonists.Add("Pirates");
-            antagonists.Add("Secret Society");
-            antagonists.Add("Wizard's Guild");
-            antagonists.Add("Thieve's Guild");
-            antagonists.Add("Army");
-            antagonists.Add("Monster");
-            antagonists.Add("Flora");
-            antagonists.Add("Fauna");
-            antagonists.Add("Undead");
-            antagonists.Add("Magic");
-            antagonists.Add("Disease");
-            antagonists.Add("Wizard");
-            antagonists.Add("Necromancer");
-            antagonists.Add("Cultists");
-            antagonists.Add("Merchants");
-            antagonists.Add("Alchemist");
-            antagonists.Add("Murderer");
-            antagonists.Add("Assassin");
-            antagonists.Add("Time");
-            antagonists.Add("Demon");
-            antagonists.Add("Invasion");
-            antagonists.Add("Evil Genius");
-            antagonists.Add("Dragon");
-            antagonists.Add("Robber");
-            antagonists.Add("Imposter");
-            antagonists.Add("Faerie");
-            antagonists.Add("Curse");
-            antagonists.Add("Parasite");
-            antagonists.Add("Adventurers");
-
+            _madLibService = madLibService;
             templates.Add("The Adventurers must [[VERB]] the [[SUBJECT]] in the [[PLACE]], while dealing with a [[HINDRANCE]] and opposing the [[ANTAGONIST]].");
             templates.Add("The Adventurers must [[VERB]], while dealing with a [[HINDRANCE]] and opposing [[ANTAGONIST]].");
             templates.Add("[[ANTAGONIST]] has stolen the [[SUBJECT]] and the Adventurers must get it back.");
             templates.Add("[[SUBJECT]] have lost their [[PLACE]] to the [[ANTAGONIST]] and the Adventurers must [[VERB]] to get it back.");
             //templates.Add("");
+
+
+            var verbs = new MadLib()
+            {
+                Name = "VERB"
+            };
+
+            verbs.Values.Add("Rescue");
+            verbs.Values.Add("Escort");
+            verbs.Values.Add("Attack");
+            verbs.Values.Add("Investigate");
+            verbs.Values.Add("Aid");
+            verbs.Values.Add("Transport");
+            verbs.Values.Add("Steal");
+            verbs.Values.Add("Fight");
+            verbs.Values.Add("Blackmail");
+            verbs.Values.Add("Hide");
+            verbs.Values.Add("Shelter");
+            verbs.Values.Add("Trick");
+            verbs.Values.Add("Negotiate");
+            verbs.Values.Add("Defend");
+            verbs.Values.Add("Retrieve");
+            verbs.Values.Add("Overcome");
+            verbs.Values.Add("Invade");
+            verbs.Values.Add("Kill");
+            verbs.Values.Add("Capture");
+            verbs.Values.Add("Free");
+            verbs.Values.Add("Secure");
+            verbs.Values.Add("Heal");
+            verbs.Values.Add("Trade");
+            verbs.Values.Add("Scare");
+            verbs.Values.Add("Hunt");
+            verbs.Values.Add("Find");
+            verbs.Values.Add("Defend");
+            verbs.Values.Add("Prevent");
+            verbs.Values.Add("Cause");
+            verbs.Values.Add("Serve");
+            verbs.Values.Add("Take");
+            verbs.Values.Add("Bargain");
+            verbs.Values.Add("Explore");
+            verbs.Values.Add("Sabotage");
+            verbs.Values.Add("Kidnap");
+            verbs.Values.Add("Lead");
+
+            var subjects = new MadLib()
+            {
+                Name = "SUBJECT"
+            };
+
+            subjects.Values.Add("Human");
+            subjects.Values.Add("Fey");
+            subjects.Values.Add("Dwarf");
+            subjects.Values.Add("Goblin");
+            subjects.Values.Add("Salimar");
+            subjects.Values.Add("Treefolk");
+            subjects.Values.Add("Karhu");
+            subjects.Values.Add("Lizardfolk");
+            subjects.Values.Add("Royalty");
+            subjects.Values.Add("Priest");
+            subjects.Values.Add("Wizard");
+            subjects.Values.Add("Scribe");
+            subjects.Values.Add("Monster");
+            subjects.Values.Add("Animal");
+            subjects.Values.Add("Pirate");
+            subjects.Values.Add("Bandit");
+            subjects.Values.Add("Magic Item");
+            subjects.Values.Add("Enemy");
+            subjects.Values.Add("Passenger");
+            subjects.Values.Add("Riddle");
+            subjects.Values.Add("Merchandise");
+            subjects.Values.Add("Contraband");
+            subjects.Values.Add("Performer");
+            subjects.Values.Add("Caravan");
+            subjects.Values.Add("Merchant");
+            subjects.Values.Add("Thief");
+            subjects.Values.Add("Warrior");
+            subjects.Values.Add("Healer");
+            subjects.Values.Add("Peasant");
+            subjects.Values.Add("Begger");
+            subjects.Values.Add("Traveler");
+            subjects.Values.Add("Inkeeper");
+            subjects.Values.Add("Ghost");
+            subjects.Values.Add("City Watch");
+            subjects.Values.Add("Witness");
+            subjects.Values.Add("Alchemist");
+
+            var places = new MadLib()
+            {
+                Name = "PLACE"
+            };
+            places.Values.Add("Mountain Top");
+            places.Values.Add("Ruins");
+            places.Values.Add("Ocean");
+            places.Values.Add("Desert");
+            places.Values.Add("Island");
+            places.Values.Add("Canyon");
+            places.Values.Add("Mountain Pass");
+            places.Values.Add("Temple");
+            places.Values.Add("Ice Cave");
+            places.Values.Add("Volcano");
+            places.Values.Add("Forest");
+            places.Values.Add("Whirlpool");
+            places.Values.Add("Sunken City");
+            places.Values.Add("Subterranean City");
+            places.Values.Add("Floating Fortress");
+            places.Values.Add("Airship");
+            places.Values.Add("Fortress");
+            places.Values.Add("Market");
+            places.Values.Add("Tower");
+            places.Values.Add("City Jail");
+            places.Values.Add("Bridge");
+            places.Values.Add("Sewers");
+            places.Values.Add("Docks");
+            places.Values.Add("Dungeon");
+            places.Values.Add("Graveyard");
+            places.Values.Add("Gambling House");
+            places.Values.Add("Faerie Realm");
+            places.Values.Add("Land of Dreams");
+            places.Values.Add("Other Dimension");
+            places.Values.Add("Castle");
+            places.Values.Add("Monastery");
+            places.Values.Add("Mine");
+            places.Values.Add("Enemy Territory");
+            places.Values.Add("Dragon's Den");
+            places.Values.Add("Labyrinth");
+
+            var hindrances = new MadLib()
+            {
+                Name = "HINDRANCE"
+            };
+
+            hindrances.Values.Add("Ally");
+            hindrances.Values.Add("Betrayal");
+            hindrances.Values.Add("Love");
+            hindrances.Values.Add("Broken Promise");
+            hindrances.Values.Add("Deception");
+            hindrances.Values.Add("Rival");
+            hindrances.Values.Add("Mentor");
+            hindrances.Values.Add("Family");
+            hindrances.Values.Add("Attack");
+            hindrances.Values.Add("Trap");
+            hindrances.Values.Add("Physical Illness");
+            hindrances.Values.Add("Weather");
+            hindrances.Values.Add("Finances");
+            hindrances.Values.Add("Theft");
+            hindrances.Values.Add("Spy");
+            hindrances.Values.Add("Double Agent");
+            hindrances.Values.Add("Revenge");
+            hindrances.Values.Add("Mental Illness");
+            hindrances.Values.Add("Red Herring");
+            hindrances.Values.Add("Transportation");
+            hindrances.Values.Add("Hostage");
+            hindrances.Values.Add("Kidnapping");
+            hindrances.Values.Add("Assassination");
+            hindrances.Values.Add("City Watch");
+            hindrances.Values.Add("Greed");
+            hindrances.Values.Add("Trust");
+            hindrances.Values.Add("Hatred");
+            hindrances.Values.Add("Jealousy");
+            hindrances.Values.Add("Bad Luck");
+            hindrances.Values.Add("Pride");
+            hindrances.Values.Add("Laziness");
+            hindrances.Values.Add("Lust");
+            hindrances.Values.Add("Gluttony");
+            hindrances.Values.Add("Neglect");
+            hindrances.Values.Add("Forgetfulness");
+            hindrances.Values.Add("Ignorance");
+
+            var antagonists = new MadLib()
+            {
+                Name = "ANTAGONIST"
+            };
+            antagonists.Values.Add("City Watch");
+            antagonists.Values.Add("City Leader");
+            antagonists.Values.Add("Spy");
+            antagonists.Values.Add("Politics");
+            antagonists.Values.Add("Moneylender");
+            antagonists.Values.Add("Scandal");
+            antagonists.Values.Add("Bandits");
+            antagonists.Values.Add("Pirates");
+            antagonists.Values.Add("Secret Society");
+            antagonists.Values.Add("Wizard's Guild");
+            antagonists.Values.Add("Thieve's Guild");
+            antagonists.Values.Add("Army");
+            antagonists.Values.Add("Monster");
+            antagonists.Values.Add("Flora");
+            antagonists.Values.Add("Fauna");
+            antagonists.Values.Add("Undead");
+            antagonists.Values.Add("Magic");
+            antagonists.Values.Add("Disease");
+            antagonists.Values.Add("Wizard");
+            antagonists.Values.Add("Necromancer");
+            antagonists.Values.Add("Cultists");
+            antagonists.Values.Add("Merchants");
+            antagonists.Values.Add("Alchemist");
+            antagonists.Values.Add("Murderer");
+            antagonists.Values.Add("Assassin");
+            antagonists.Values.Add("Time");
+            antagonists.Values.Add("Demon");
+            antagonists.Values.Add("Invasion");
+            antagonists.Values.Add("Evil Genius");
+            antagonists.Values.Add("Dragon");
+            antagonists.Values.Add("Robber");
+            antagonists.Values.Add("Imposter");
+            antagonists.Values.Add("Faerie");
+            antagonists.Values.Add("Curse");
+            antagonists.Values.Add("Parasite");
+            antagonists.Values.Add("Adventurers");
+
+            _madLibService.madLibs.Add(subjects);
+            _madLibService.madLibs.Add(verbs);
+            _madLibService.madLibs.Add(antagonists);
+            _madLibService.madLibs.Add(places);
+            _madLibService.madLibs.Add(hindrances);
         }
 
         public string GetRandomTemplate()
@@ -223,40 +251,12 @@ namespace SingularityLathe.Forge.AdventureForge
         public string GenerateAdventure(string adventure)
         {
 
-            var regex = new Regex(@"\[\[.*?\]\]");
+            var processedAdventure = _madLibService.ProcessMadLib(adventure);
 
-            var matches = regex.Matches(adventure);
-
-            foreach (Match m in matches)
-            {
-                var replacer = new Regex(m.Value);
-
-                string replace = "";
-
-                switch (m.Value)
-                {
-                    case "[[VERB]]":
-                        replace = verbs[rnd.Next(verbs.Count())];
-                        break;
-                    case "[[SUBJECT]]":
-                        replace = subjcts[rnd.Next(subjcts.Count())];
-                        break;
-                    case "[[PLACE]]":
-                        replace = places[rnd.Next(places.Count())];
-                        break;
-                    case "[[HINDRANCE]]":
-                        replace = hindrances[rnd.Next(hindrances.Count())];
-                        break;
-                    case "[[ANTAGONIST]]":
-                        replace = antagonists[rnd.Next(antagonists.Count())];
-                        break;
-                }
-
-                adventure = regex.Replace(adventure, replace, 1);
-            }
-
-            return adventure;
+            return processedAdventure;
         }
 
     }
+
+    
 }
