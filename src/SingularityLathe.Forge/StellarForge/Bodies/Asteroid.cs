@@ -10,7 +10,7 @@ namespace SingularityLathe.Forge.StellarForge.Bodies
         public string Name { get; set; }
         public int OrbitOrder { get; set; }
 
-        public StellarBodyType StellarBodyType { get; set; }
+        public StellarBodyType StellarBodyType { get { return StellarBodyType.ASTEROID; } }
 
         public List<IStellarBody> ChildBodies { get; set; }
 

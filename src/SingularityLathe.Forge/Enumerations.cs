@@ -6,9 +6,10 @@ namespace SingularityLathe.Forge
 {
     public enum StellarBodyType
     {
-        Star,
-        Planet,
-        Belt,
-        Moon
+        STAR,
+        PLANET,
+        BELT,
+        MOON,
+        ASTEROID
     }
 }

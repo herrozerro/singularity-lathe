@@ -10,7 +10,7 @@ namespace SingularityLathe.Forge.StellarForge.Bodies
     {
         public string Name { get; set; }
         public int OrbitOrder { get; set; }
-        public StellarBodyType StellarBodyType { get { return StellarBodyType.Star; } }
+        public StellarBodyType StellarBodyType { get { return StellarBodyType.STAR; } }
         public List<IStellarBody> ChildBodies { get; set; }
         public List<string> Anomalies { get; set; }
 
@@ -20,7 +20,7 @@ namespace SingularityLathe.Forge.StellarForge.Bodies
         public StarClassification StarClass { get; set; }
     }
 
-    public class StarClassification
+    public class StarClassification : IWeightedItem
     {
         public string Class { get; set; }
         public string Description { get; set; }
@@ -30,7 +30,7 @@ namespace SingularityLathe.Forge.StellarForge.Bodies
         public decimal EffectiveTempMin { get; set; }
         public decimal EffectiveTempMax { get; set; }
 
-        public decimal Weight { get; set; }
+        public int ItemWeight { get; set; }
 
         public static List<StarClassification> GetStarClasses()
         {
@@ -45,7 +45,7 @@ namespace SingularityLathe.Forge.StellarForge.Bodies
                     StellarMassMax = 350,
                     EffectiveTempMin = 30000,
                     EffectiveTempMax = 40000,
-                    Weight = 1
+                    ItemWeight = 1
                 },
 
                 new StarClassification
@@ -57,7 +57,7 @@ namespace SingularityLathe.Forge.StellarForge.Bodies
                     StellarMassMax = 16,
                     EffectiveTempMin = 10000,
                     EffectiveTempMax = 30000,
-                    Weight = 1
+                    ItemWeight = 1
                 },
 
                 new StarClassification
@@ -69,7 +69,7 @@ namespace SingularityLathe.Forge.StellarForge.Bodies
                     StellarMassMax = 2.1M,
                     EffectiveTempMin = 7500,
                     EffectiveTempMax = 10000,
-                    Weight = 3
+                    ItemWeight = 3
                 },
 
                 new StarClassification
@@ -81,7 +81,7 @@ namespace SingularityLathe.Forge.StellarForge.Bodies
                     StellarMassMax = 1.4M,
                     EffectiveTempMin = 6000,
                     EffectiveTempMax = 7500,
-                    Weight = 5
+                    ItemWeight = 5
                 },
 
                 new StarClassification
@@ -93,7 +93,7 @@ namespace SingularityLathe.Forge.StellarForge.Bodies
                     StellarMassMax = 1.04M,
                     EffectiveTempMin = 5200,
                     EffectiveTempMax = 6000,
-                    Weight = 10
+                    ItemWeight = 10
                 },
 
                 new StarClassification
@@ -105,7 +105,7 @@ namespace SingularityLathe.Forge.StellarForge.Bodies
                     StellarMassMax = .8M,
                     EffectiveTempMin = 3700,
                     EffectiveTempMax = 5200,
-                    Weight = 20
+                    ItemWeight = 20
                 },
 
                 new StarClassification
@@ -117,29 +117,27 @@ namespace SingularityLathe.Forge.StellarForge.Bodies
                     StellarMassMax = .8M,
                     EffectiveTempMin = 2400,
                     EffectiveTempMax = 3700,
-                    Weight = 60
+                    ItemWeight = 60
                 }
             };
 
             return starClassifications;
         }
 
-        public static StarClassification GetRandomClassification()
+        public static StarClassification GetRandomClassification(Random rnd)
         {
             var classes = GetStarClasses();
-
-            var rnd = new Random();
 
             return classes[rnd.Next(classes.Count)];
         }
 
-        public static StarClassification GetWeightedClassification()
+        public static StarClassification GetWeightedClassification(Random rnd)
         {
-            var classes = GetStarClasses();
+            var classes = GetStarClasses().Select(x=>(IWeightedItem)x).ToList();
 
             var rand = new Random();
 
-            return classes.Where(x => x.Weight <= rand.Next(100)).OrderByDescending(x => x.Weight).First();
+            return (StarClassification)classes.GetRandomWeightedItem(rnd);
         }
     }
 }

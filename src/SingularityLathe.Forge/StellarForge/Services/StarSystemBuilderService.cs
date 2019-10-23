@@ -27,7 +27,7 @@ namespace SingularityLathe.Forge.StellarForge.Services
             {
                 Name = _starSystem.Designation + "-A",
                 OrbitOrder = 0,
-                StarClass = StarClassification.GetRandomClassification()
+                StarClass = StarClassification.GetRandomClassification(rnd)
             };
 
             _starSystem.SystemStar.EffectiveTemp = rnd.Next((int)_starSystem.SystemStar.StarClass.EffectiveTempMin, (int)_starSystem.SystemStar.StarClass.EffectiveTempMax);
