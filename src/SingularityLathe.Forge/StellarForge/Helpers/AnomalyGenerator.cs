@@ -1,4 +1,4 @@
-﻿using SingularityLathe.Forge.Services;
+﻿using SingularityLathe.RadLibs;
 using System;
 using System.Collections.Generic;
 using System.Text;
@@ -8,14 +8,14 @@ namespace SingularityLathe.Forge.StellarForge.Helpers
     internal class AnomalyGenerator
     {
         private readonly Random rnd = null;
-        private readonly MadLibService madLibService = null;
+        private readonly RadLibService madLibService = null;
 
-        public AnomalyGenerator(Random rnd, MadLibService madLibService)
+        public AnomalyGenerator(Random rnd, RadLibService madLibService)
         {
             this.rnd = rnd;
             this.madLibService = madLibService;
 
-            var Types = new MadLib()
+            var Types = new RadLib()
             {
                 Name = "Type"
             };

@@ -9,4 +9,12 @@
     <PackageReference Include="Newtonsoft.Json" Version="12.0.3-beta1" />
   </ItemGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\SingularityLathe.RadLibs\SingularityLathe.RadLibs.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="Services\" />
+  </ItemGroup>
+
 </Project>

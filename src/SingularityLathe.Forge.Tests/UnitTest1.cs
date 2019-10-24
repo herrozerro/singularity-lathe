@@ -15,7 +15,7 @@ namespace SingularityLathe.Forge.Tests
         public void Test1()
         {
             //Arrange
-            var madlibs = new SingularityLathe.Forge.Services.MadLibService(new Random());
+            var madlibs = new SingularityLathe.RadLibs.RadLibService(new RadLibs.RadLibConfiguration() { RandomSeed = 1});
             var adventure = new SingularityLathe.Forge.AdventureForge.AdventureGeneratorService(madlibs);
             //Act
 

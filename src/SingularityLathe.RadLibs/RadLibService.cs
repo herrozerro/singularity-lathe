@@ -4,13 +4,15 @@ using System.Linq;
 using System.Text;
 using System.Text.RegularExpressions;
 
-namespace SingularityLathe.Forge.Services
+namespace SingularityLathe.RadLibs
 {
-    public class MadLibService
+    public class RadLibService : BaseRadLibService
     {
         private readonly Random rnd;
-        public List<MadLib> madLibs { get; set; } = new List<MadLib>();
-        
+        private readonly string TagOpener;
+        private readonly string TagCloser;
+        public List<RadLib> radLibs { get; set; } = new List<RadLib>();
+
         public string ProcessMadLib(string template)
         {
             var regex = new Regex(@"\[\[.*?\]\]");
@@ -23,7 +25,7 @@ namespace SingularityLathe.Forge.Services
 
                 string replace = "";
 
-                var madlib = madLibs.FirstOrDefault(x => x.Tag == m.Value);
+                var madlib = radLibs.FirstOrDefault(x => TagOpener + x.Tag + TagCloser == m.Value);
 
                 if (madlib == null)
                 {
@@ -38,16 +40,18 @@ namespace SingularityLathe.Forge.Services
             return template;
         }
 
-        public MadLibService(Random rnd)
+        public RadLibService(RadLibConfiguration config) : base(config)
         {
-            this.rnd = rnd;
+            this.rnd = config.RandomSeed == 0 ? new Random() : new Random(config.RandomSeed);
+            this.TagCloser = config.TagCloser;
+            this.TagOpener = config.TagOpener;
         }
     }
 
-    public class MadLib
+    public class RadLib
     {
         public string Name { get; set; }
-        public string Tag => $"[[{Name}]]";
+        public string Tag => $"{Name}";
         public List<string> Values { get; set; } = new List<string>();
     }
 }
