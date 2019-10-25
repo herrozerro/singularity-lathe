@@ -24,7 +24,7 @@ namespace SingularityLathe.Forge.AdventureForge
             //templates.Add("");
 
 
-            var verbs = new RadLib()
+            var verbs = new RadLibTagDictionary()
             {
                 Name = "VERB"
             };
@@ -66,7 +66,7 @@ namespace SingularityLathe.Forge.AdventureForge
             verbs.Values.Add("Kidnap");
             verbs.Values.Add("Lead");
 
-            var subjects = new RadLib()
+            var subjects = new RadLibTagDictionary()
             {
                 Name = "SUBJECT"
             };
@@ -108,7 +108,7 @@ namespace SingularityLathe.Forge.AdventureForge
             subjects.Values.Add("Witness");
             subjects.Values.Add("Alchemist");
 
-            var places = new RadLib()
+            var places = new RadLibTagDictionary()
             {
                 Name = "PLACE"
             };
@@ -148,7 +148,7 @@ namespace SingularityLathe.Forge.AdventureForge
             places.Values.Add("Dragon's Den");
             places.Values.Add("Labyrinth");
 
-            var hindrances = new RadLib()
+            var hindrances = new RadLibTagDictionary()
             {
                 Name = "HINDRANCE"
             };
@@ -190,7 +190,7 @@ namespace SingularityLathe.Forge.AdventureForge
             hindrances.Values.Add("Forgetfulness");
             hindrances.Values.Add("Ignorance");
 
-            var antagonists = new RadLib()
+            var antagonists = new RadLibTagDictionary()
             {
                 Name = "ANTAGONIST"
             };
@@ -231,11 +231,11 @@ namespace SingularityLathe.Forge.AdventureForge
             antagonists.Values.Add("Parasite");
             antagonists.Values.Add("Adventurers");
 
-            _radLibService.radLibs.Add(subjects);
-            _radLibService.radLibs.Add(verbs);
-            _radLibService.radLibs.Add(antagonists);
-            _radLibService.radLibs.Add(places);
-            _radLibService.radLibs.Add(hindrances);
+            _radLibService.RadLibTagDictionaries.Add(subjects);
+            _radLibService.RadLibTagDictionaries.Add(verbs);
+            _radLibService.RadLibTagDictionaries.Add(antagonists);
+            _radLibService.RadLibTagDictionaries.Add(places);
+            _radLibService.RadLibTagDictionaries.Add(hindrances);
         }
 
         public string GetRandomTemplate()

@@ -15,7 +15,7 @@ namespace SingularityLathe.Forge.StellarForge.Helpers
             this.rnd = rnd;
             this.madLibService = madLibService;
 
-            var Types = new RadLib()
+            var Types = new RadLibTagDictionary()
             {
                 Name = "Type"
             };

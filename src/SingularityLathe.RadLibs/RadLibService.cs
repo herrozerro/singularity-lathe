@@ -11,7 +11,7 @@ namespace SingularityLathe.RadLibs
         private readonly Random rnd;
         private readonly string TagOpener;
         private readonly string TagCloser;
-        public List<RadLib> radLibs { get; set; } = new List<RadLib>();
+        public List<RadLibTagDictionary> RadLibTagDictionaries { get; set; } = new List<RadLibTagDictionary>();
 
         public string ProcessMadLib(string template)
         {
@@ -25,7 +25,7 @@ namespace SingularityLathe.RadLibs
 
                 string replace = "";
 
-                var madlib = radLibs.FirstOrDefault(x => TagOpener + x.Tag + TagCloser == m.Value);
+                var madlib = RadLibTagDictionaries.FirstOrDefault(x => TagOpener + x.Tag + TagCloser == m.Value);
 
                 if (madlib == null)
                 {
@@ -46,12 +46,5 @@ namespace SingularityLathe.RadLibs
             this.TagCloser = config.TagCloser;
             this.TagOpener = config.TagOpener;
         }
-    }
-
-    public class RadLib
-    {
-        public string Name { get; set; }
-        public string Tag => $"{Name}";
-        public List<string> Values { get; set; } = new List<string>();
     }
 }
