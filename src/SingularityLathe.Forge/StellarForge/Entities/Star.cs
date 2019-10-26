@@ -4,7 +4,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 
-namespace SingularityLathe.Forge.StellarForge.Bodies
+namespace SingularityLathe.Forge.StellarForge
 {
     public class Star : IStellarBody
     {

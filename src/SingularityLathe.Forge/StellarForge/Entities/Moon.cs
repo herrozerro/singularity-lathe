@@ -1,18 +1,17 @@
-﻿using System;
+﻿using SingularityLathe.Forge.Interfaces;
+using System;
 using System.Collections.Generic;
 using System.Text;
-using SingularityLathe.Forge.Interfaces;
 
-namespace SingularityLathe.Forge.StellarForge.Bodies
+namespace SingularityLathe.Forge.StellarForge
 {
-    public class Belt : IStellarBody
+    class Moon : IStellarBody
     {
         public string Name { get; set; }
         public int OrbitOrder { get; set; }
-        public StellarBodyType StellarBodyType { get { return StellarBodyType.BELT; } }
+        public StellarBodyType StellarBodyType { get { return StellarBodyType.MOON; } }
         public List<IStellarBody> ChildBodies { get; set; }
         public List<string> Anomalies { get; set; }
-
 
     }
 }
