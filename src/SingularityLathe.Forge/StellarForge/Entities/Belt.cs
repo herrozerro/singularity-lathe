@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Text;
-using SingularityLathe.Forge.Interfaces;
 
 namespace SingularityLathe.Forge.StellarForge
 {

@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Text;
 
-namespace SingularityLathe.Forge.Interfaces
+namespace SingularityLathe.Forge.StellarForge
 {
     public interface IStellarBody
     {
