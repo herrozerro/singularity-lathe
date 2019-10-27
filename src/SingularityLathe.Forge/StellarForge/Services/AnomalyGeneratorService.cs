@@ -3,21 +3,19 @@ using System;
 using System.Collections.Generic;
 using System.Text;
 
-namespace SingularityLathe.Forge.StellarForge.Helpers
+namespace SingularityLathe.Forge.StellarForge
 {
-    internal class AnomalyGenerator
+    internal class AnomalyGeneratorService
     {
-        private readonly Random rnd = null;
         private readonly RadLibService madLibService = null;
 
-        public AnomalyGenerator(Random rnd, RadLibService madLibService)
+        public AnomalyGeneratorService(RadLibService radLibService)
         {
-            this.rnd = rnd;
-            this.madLibService = madLibService;
+            this.madLibService = radLibService;
 
             var Types = new RadLibTagDictionary()
             {
-                Name = "Type"
+                Name = "AnomalyType"
             };
 
             Types.Values.Add("Magnetic");
