@@ -56,9 +56,9 @@ namespace SingularityLathe.Forge.StellarForge
 
         public static Population GetRandomPopulation(Random rnd)
         {
-            var pops = GetPopulations().Select(x => (IWeightedItem)x).ToList();
+            var pop = GetPopulations().GetRandomWeightedItem(rnd);
 
-            return (Population)pops.GetRandomWeightedItem(rnd);
+            return (Population)pop;
         }
     }
 

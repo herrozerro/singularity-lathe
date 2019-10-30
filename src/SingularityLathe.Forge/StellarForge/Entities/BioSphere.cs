@@ -57,8 +57,8 @@ namespace SingularityLathe.Forge.StellarForge
 
         public static BioSphere GetRandomBiosphere(Random rnd)
         {
-            var bios = GetBioSpheres().Select(x => (IWeightedItem)x).ToList();
-            return (BioSphere)bios.GetRandomWeightedItem(rnd);
+            var bio = GetBioSpheres().GetRandomWeightedItem(rnd);
+            return (BioSphere)bio;
         }
     }
 

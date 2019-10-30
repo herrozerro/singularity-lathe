@@ -56,9 +56,9 @@ namespace SingularityLathe.Forge.StellarForge
 
         public static TechLevel GetRandomPopulation(Random rnd)
         {
-            var techs = GetTechLevels().Select(x => (IWeightedItem)x).ToList();
-            
-            return (TechLevel)techs.GetRandomWeightedItem(rnd);
+            var tech = GetTechLevels().GetRandomWeightedItem(rnd);
+
+            return (TechLevel)tech;
         }
     }
 

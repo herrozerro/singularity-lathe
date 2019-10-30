@@ -133,11 +133,9 @@ namespace SingularityLathe.Forge.StellarForge
 
         public static StarClassification GetWeightedClassification(Random rnd)
         {
-            var classes = GetStarClasses().Select(x=>(IWeightedItem)x).ToList();
+            var starClass = GetStarClasses().GetRandomWeightedItem(rnd);
 
-            var rand = new Random();
-
-            return (StarClassification)classes.GetRandomWeightedItem(rnd);
+            return (StarClassification)starClass;
         }
     }
 }

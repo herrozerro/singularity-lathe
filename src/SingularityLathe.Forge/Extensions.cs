@@ -7,7 +7,7 @@ namespace SingularityLathe.Forge
 {
     public static class Extensions
     {
-        public static IWeightedItem GetRandomWeightedItem(this List<IWeightedItem> weightedItems, Random rnd)
+        public static IWeightedItem GetRandomWeightedItem(this IEnumerable<IWeightedItem> weightedItems, Random rnd)
         {
             var weightedList = new List<IWeightedItem>();
 
