@@ -13,7 +13,7 @@ namespace SingularityLathe.Forge
 
             foreach (var item in weightedItems)
             {
-                for (int i = 0; i < item.ItemWeight; i++)
+                for (int i = 1; i < item.ItemWeight; i++)
                 {
                     weightedList.Add(item);
                 }

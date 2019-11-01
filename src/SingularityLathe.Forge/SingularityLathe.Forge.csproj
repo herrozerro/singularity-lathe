@@ -13,8 +13,4 @@
     <ProjectReference Include="..\SingularityLathe.RadLibs\SingularityLathe.RadLibs.csproj" />
   </ItemGroup>
 
-  <ItemGroup>
-    <Folder Include="StellarForge\Helpers\" />
-  </ItemGroup>
-
 </Project>
