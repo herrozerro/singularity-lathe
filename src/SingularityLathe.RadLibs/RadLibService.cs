@@ -13,7 +13,7 @@ namespace SingularityLathe.RadLibs
         private readonly string TagCloser;
         public List<RadLibTagDictionary> RadLibTagDictionaries { get; set; } = new List<RadLibTagDictionary>();
 
-        public string ProcessMadLib(string template)
+        public string ProcessMadLibRandom(string template)
         {
             var regex = new Regex(@"\[\[.*?\]\]");
 
@@ -38,6 +38,16 @@ namespace SingularityLathe.RadLibs
             }
 
             return template;
+        }
+
+        public IEnumerable<RadLibTagBlank> GetBlanksFromTemplate(string template)
+        {
+            throw new NotImplementedException();
+        }
+
+        public string ProcessMadLibTemplate(string template, IEnumerable<RadLibTagBlank> blanks)
+        {
+            throw new NotImplementedException();
         }
 
         public RadLibService(RadLibConfiguration config) : base(config)

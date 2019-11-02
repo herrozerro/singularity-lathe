@@ -251,7 +251,7 @@ namespace SingularityLathe.Forge.AdventureForge
         public string GenerateAdventure(string adventure)
         {
 
-            var processedAdventure = _radLibService.ProcessMadLib(adventure);
+            var processedAdventure = _radLibService.ProcessMadLibRandom(adventure);
 
             return processedAdventure;
         }
