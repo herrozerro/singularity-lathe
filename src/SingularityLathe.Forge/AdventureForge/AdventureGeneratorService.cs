@@ -9,13 +9,14 @@ namespace SingularityLathe.Forge.AdventureForge
 {
     public class AdventureGeneratorService
     {
-        private readonly Random rnd = new Random();
+        private readonly Random rnd = null;
         private readonly RadLibService _radLibService = null;
         private readonly List<string> templates = new List<string>();
 
 
-        public AdventureGeneratorService(RadLibService radLibService)
+        public AdventureGeneratorService(Random random, RadLibService radLibService)
         {
+            rnd = random;
             _radLibService = radLibService;
             templates.Add("The Adventurers must [[VERB]] the [[SUBJECT]] in the [[PLACE]], while dealing with a [[HINDRANCE]] and opposing the [[ANTAGONIST]].");
             templates.Add("The Adventurers must [[VERB]], while dealing with a [[HINDRANCE]] and opposing [[ANTAGONIST]].");

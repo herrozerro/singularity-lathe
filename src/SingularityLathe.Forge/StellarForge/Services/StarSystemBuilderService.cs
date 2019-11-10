@@ -8,29 +8,29 @@ namespace SingularityLathe.Forge.StellarForge.Services
 {
     public class StarSystemBuilderService
     {
-        private readonly PlanetBuilderService _planetBuilderService = null;
+        private readonly PlanetBuilderService planetBuilderService = null;
 
-        private StarSystem _starSystem = new StarSystem();
+        private StarSystem starSystem = new StarSystem();
 
-        private readonly Random rnd = new Random();
-
-        public StarSystemBuilderService(PlanetBuilderService planetBuilderService)
+        private readonly Random rnd = null;
+        public StarSystemBuilderService(Random random, PlanetBuilderService planetBuilderService)
         {
-            _planetBuilderService = planetBuilderService;
+            rnd = random;
+            this.planetBuilderService = planetBuilderService;
         }
 
         public StarSystemBuilderService GenerateStar()
         {
-            _starSystem.Designation = GetRandomDesination();
-            _starSystem.SystemStar = new Star
+            starSystem.Designation = GetRandomDesination();
+            starSystem.SystemStar = new Star
             {
-                Name = _starSystem.Designation + "-A",
+                Name = starSystem.Designation + "-A",
                 OrbitOrder = 0,
                 StarClass = StarClassification.GetRandomClassification(rnd)
             };
 
-            _starSystem.SystemStar.EffectiveTemp = rnd.Next((int)_starSystem.SystemStar.StarClass.EffectiveTempMin, (int)_starSystem.SystemStar.StarClass.EffectiveTempMax);
-            _starSystem.SystemStar.StellarMass = (decimal)(rnd.Next((int)(_starSystem.SystemStar.StarClass.StellarMassMin * 100), (int)(_starSystem.SystemStar.StarClass.StellarMassMax * 100)) / 100.00);
+            starSystem.SystemStar.EffectiveTemp = rnd.Next((int)starSystem.SystemStar.StarClass.EffectiveTempMin, (int)starSystem.SystemStar.StarClass.EffectiveTempMax);
+            starSystem.SystemStar.StellarMass = (decimal)(rnd.Next((int)(starSystem.SystemStar.StarClass.StellarMassMin * 100), (int)(starSystem.SystemStar.StarClass.StellarMassMax * 100)) / 100.00);
 
             return this;
         }
@@ -38,29 +38,28 @@ namespace SingularityLathe.Forge.StellarForge.Services
         public StarSystemBuilderService GenerateSystem()
         {
             var system = new List<IStellarBody>();
-            var rnd = new Random();
 
             int systemsize = rnd.Next(10);
 
             for (int i = 1; i < systemsize; i++)
             {
-                _planetBuilderService.GeneratePlanet();
+                planetBuilderService.GeneratePlanet();
 
-                system.Add(_planetBuilderService.BuildPlanet());
+                system.Add(planetBuilderService.BuildPlanet());
 
             }
             var y = 1;
-            system.ForEach((x => { x.Name = _starSystem.Designation + "-" + y++; }));
+            system.ForEach((x => { x.Name = starSystem.Designation + "-" + y++; }));
 
-            _starSystem.SystemStar.ChildBodies = system;
+            starSystem.SystemStar.ChildBodies = system;
 
             return this;
         }
 
         public StarSystem Build()
         {
-            var starSystem = _starSystem;
-            _starSystem = new StarSystem();
+            var starSystem = this.starSystem;
+            this.starSystem = new StarSystem();
             return starSystem;
         }
 

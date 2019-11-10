@@ -6,24 +6,24 @@ namespace SingularityLathe.Forge.StellarForge.Services
 {
     public class PlanetBuilderService
     {
-        private Planet _planet = new Planet();
-        private readonly Random rnd = new Random();
+        private Planet planet = new Planet();
+        private readonly Random rnd = null;
 
         public PlanetBuilderService GeneratePhysicalProperties()
         {
-            _planet.Tempature = GetRandomTemp(rnd);
-            _planet.Atmosphere = GetRandomAtmosphere(rnd);
-            _planet.Biosphere = GetRandomBiosphere(rnd);
+            planet.Tempature = GetRandomTemp(rnd);
+            planet.Atmosphere = GetRandomAtmosphere(rnd);
+            planet.Biosphere = GetRandomBiosphere(rnd);
 
             return this;
         }
 
         public PlanetBuilderService GenerateLife()
         {
-            if (_planet.Biosphere.Description != "No native biosphere")
+            if (planet.Biosphere.Description != "No native biosphere")
             {
-                _planet.Population = GetRandomPopulation(rnd);
-                _planet.TechLevel = GetRandomTechLevel(rnd);
+                planet.Population = GetRandomPopulation(rnd);
+                planet.TechLevel = GetRandomTechLevel(rnd);
             }
 
             return this;
@@ -59,9 +59,14 @@ namespace SingularityLathe.Forge.StellarForge.Services
 
         public Planet BuildPlanet()
         {
-            var newplanet = _planet;
-            _planet = new Planet();
+            var newplanet = planet;
+            planet = new Planet();
             return newplanet;
+        }
+
+        public PlanetBuilderService(Random random)
+        {
+            rnd = random;
         }
     }
 }

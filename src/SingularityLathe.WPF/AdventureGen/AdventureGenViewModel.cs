@@ -50,7 +50,7 @@ namespace SingularityLathe.WPF.AdventureGen
                 return;
             }
 
-            adventureGeneratorService = new AdventureGeneratorService(new RadLibs.RadLibService(new RadLibs.RadLibConfiguration() { RandomSeed = 1}));
+            adventureGeneratorService = new AdventureGeneratorService(new Random(), new RadLibs.RadLibService(new RadLibs.RadLibConfiguration() { RandomSeed = 1}));
             AdventureTemplate = adventureGeneratorService.GetRandomTemplate();
         }
 
