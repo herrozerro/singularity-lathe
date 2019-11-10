@@ -9,10 +9,9 @@ namespace SingularityLathe.Forge.StellarForge.Services
     public class StarSystemBuilderService
     {
         private readonly PlanetBuilderService planetBuilderService = null;
-
         private StarSystem starSystem = new StarSystem();
-
         private readonly Random rnd = null;
+
         public StarSystemBuilderService(Random random, PlanetBuilderService planetBuilderService)
         {
             rnd = random;

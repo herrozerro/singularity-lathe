@@ -7,5 +7,10 @@ namespace SingularityLathe.RadLibs
         public string Name { get; set; }
         public string Tag => $"{Name}";
         public List<string> Values { get; set; } = new List<string>();
+
+        public RadLibTagDictionary(string Name)
+        {
+            this.Name = Name;
+        }
     }
 }

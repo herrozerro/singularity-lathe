@@ -9,6 +9,11 @@ namespace SingularityLathe.Forge.StellarForge.Services
         private Planet planet = new Planet();
         private readonly Random rnd = null;
 
+        public PlanetBuilderService(Random random)
+        {
+            rnd = random;
+        }
+
         public PlanetBuilderService GeneratePhysicalProperties()
         {
             planet.Tempature = GetRandomTemp(rnd);
@@ -50,7 +55,6 @@ namespace SingularityLathe.Forge.StellarForge.Services
             return Atmosphere.GetRandomAtmosphere(rnd);
         }
 
-
         public void GeneratePlanet()
         {
             GeneratePhysicalProperties();
@@ -62,11 +66,6 @@ namespace SingularityLathe.Forge.StellarForge.Services
             var newplanet = planet;
             planet = new Planet();
             return newplanet;
-        }
-
-        public PlanetBuilderService(Random random)
-        {
-            rnd = random;
         }
     }
 }

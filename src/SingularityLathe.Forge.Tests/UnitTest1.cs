@@ -13,13 +13,13 @@ namespace SingularityLathe.Forge.Tests
         }
 
         [Test]
-        public void Test1()
+        public void AdventureForgeTest()
         {
             //Arrange
             var madlibs = new RadLibs.RadLibService(new RadLibs.RadLibConfiguration() { RandomSeed = 1});
             var adventure = new AdventureForge.AdventureGeneratorService(new Random(), madlibs);
+            
             //Act
-
             var template = adventure.GenerateAdventure();
 
             //Assert
@@ -35,7 +35,7 @@ namespace SingularityLathe.Forge.Tests
 
             var system = systemGen.GenerateStar().GenerateSystem().Build();
 
-            Assert.Pass();
+            Assert.True(system.Designation != null);
         } 
     }
 }

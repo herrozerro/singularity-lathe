@@ -10,14 +10,14 @@ namespace SingularityLathe.Forge.AdventureForge
     public class AdventureGeneratorService
     {
         private readonly Random rnd = null;
-        private readonly RadLibService _radLibService = null;
+        private readonly RadLibService radLibService = null;
         private readonly List<string> templates = new List<string>();
 
 
         public AdventureGeneratorService(Random random, RadLibService radLibService)
         {
             rnd = random;
-            _radLibService = radLibService;
+            this.radLibService = radLibService;
             templates.Add("The Adventurers must [[VERB]] the [[SUBJECT]] in the [[PLACE]], while dealing with a [[HINDRANCE]] and opposing the [[ANTAGONIST]].");
             templates.Add("The Adventurers must [[VERB]], while dealing with a [[HINDRANCE]] and opposing [[ANTAGONIST]].");
             templates.Add("[[ANTAGONIST]] has stolen the [[SUBJECT]] and the Adventurers must get it back.");
@@ -25,10 +25,7 @@ namespace SingularityLathe.Forge.AdventureForge
             //templates.Add("");
 
 
-            var verbs = new RadLibTagDictionary()
-            {
-                Name = "VERB"
-            };
+            var verbs = new RadLibTagDictionary("VERB");
 
             verbs.Values.Add("Rescue");
             verbs.Values.Add("Escort");
@@ -67,10 +64,7 @@ namespace SingularityLathe.Forge.AdventureForge
             verbs.Values.Add("Kidnap");
             verbs.Values.Add("Lead");
 
-            var subjects = new RadLibTagDictionary()
-            {
-                Name = "SUBJECT"
-            };
+            var subjects = new RadLibTagDictionary("SUBJECT");
 
             subjects.Values.Add("Human");
             subjects.Values.Add("Fey");
@@ -109,10 +103,8 @@ namespace SingularityLathe.Forge.AdventureForge
             subjects.Values.Add("Witness");
             subjects.Values.Add("Alchemist");
 
-            var places = new RadLibTagDictionary()
-            {
-                Name = "PLACE"
-            };
+            var places = new RadLibTagDictionary("PLACE");
+
             places.Values.Add("Mountain Top");
             places.Values.Add("Ruins");
             places.Values.Add("Ocean");
@@ -149,10 +141,7 @@ namespace SingularityLathe.Forge.AdventureForge
             places.Values.Add("Dragon's Den");
             places.Values.Add("Labyrinth");
 
-            var hindrances = new RadLibTagDictionary()
-            {
-                Name = "HINDRANCE"
-            };
+            var hindrances = new RadLibTagDictionary("HINDRANCE");
 
             hindrances.Values.Add("Ally");
             hindrances.Values.Add("Betrayal");
@@ -191,10 +180,8 @@ namespace SingularityLathe.Forge.AdventureForge
             hindrances.Values.Add("Forgetfulness");
             hindrances.Values.Add("Ignorance");
 
-            var antagonists = new RadLibTagDictionary()
-            {
-                Name = "ANTAGONIST"
-            };
+            var antagonists = new RadLibTagDictionary("ANTAGONIST");
+
             antagonists.Values.Add("City Watch");
             antagonists.Values.Add("City Leader");
             antagonists.Values.Add("Spy");
@@ -232,11 +219,11 @@ namespace SingularityLathe.Forge.AdventureForge
             antagonists.Values.Add("Parasite");
             antagonists.Values.Add("Adventurers");
 
-            _radLibService.RadLibTagDictionaries.Add(subjects);
-            _radLibService.RadLibTagDictionaries.Add(verbs);
-            _radLibService.RadLibTagDictionaries.Add(antagonists);
-            _radLibService.RadLibTagDictionaries.Add(places);
-            _radLibService.RadLibTagDictionaries.Add(hindrances);
+            this.radLibService.RadLibTagDictionaries.Add(subjects);
+            this.radLibService.RadLibTagDictionaries.Add(verbs);
+            this.radLibService.RadLibTagDictionaries.Add(antagonists);
+            this.radLibService.RadLibTagDictionaries.Add(places);
+            this.radLibService.RadLibTagDictionaries.Add(hindrances);
         }
 
         public string GetRandomTemplate()
@@ -252,7 +239,7 @@ namespace SingularityLathe.Forge.AdventureForge
         public string GenerateAdventure(string adventure)
         {
 
-            var processedAdventure = _radLibService.ProcessMadLibRandom(adventure);
+            var processedAdventure = radLibService.ProcessMadLibRandom(adventure);
 
             return processedAdventure;
         }
