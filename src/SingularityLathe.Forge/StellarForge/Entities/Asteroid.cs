@@ -4,7 +4,7 @@ using System.Text;
 
 namespace SingularityLathe.Forge.StellarForge
 {
-    class Asteroid : IStellarBody
+    public class Asteroid : IStellarBody
     {
         public string Name { get; set; }
         public int OrbitOrder { get; set; }

@@ -32,11 +32,8 @@ namespace SingularityLathe.Forge.StellarForge
 
             var Authority = new RadLibTagDictionary("AUTHORITY");
 
-            Authority.Values.Add("Spacer's Guild");
+            Authority.Values.Add("MCR Navy");
             Authority.Values.Add("UNN Government");
-
-
-
         }
     }
 }
