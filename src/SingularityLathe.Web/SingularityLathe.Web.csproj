@@ -4,8 +4,9 @@
     <TargetFramework>netcoreapp3.0</TargetFramework>
   </PropertyGroup>
 
-
   <ItemGroup>
+    <ProjectReference Include="..\SingularityLathe.Forge\SingularityLathe.Forge.csproj" />
+    <ProjectReference Include="..\SingularityLathe.RadLibs\SingularityLathe.RadLibs.csproj" />
   </ItemGroup>
 
 </Project>

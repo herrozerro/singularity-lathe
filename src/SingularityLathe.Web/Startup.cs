@@ -8,6 +8,9 @@ using Microsoft.AspNetCore.HttpsPolicy;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
+using SingularityLathe.Forge.AdventureForge;
+using SingularityLathe.Forge.StellarForge.Services;
+using SingularityLathe.RadLibs;
 
 namespace SingularityLathe.Web
 {
@@ -24,6 +27,14 @@ namespace SingularityLathe.Web
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddControllersWithViews();
+
+            services.AddSingleton<Random>();
+            services.AddTransient(s=>new RadLibService(new RadLibConfiguration()));
+            services.AddTransient<AdventureGeneratorService>();
+            services.AddTransient<AnomalyGeneratorService>();
+            services.AddTransient<PlanetBuilderService>();
+            services.AddTransient<MoonBuilderService>();
+            services.AddTransient<StarSystemBuilderService>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
