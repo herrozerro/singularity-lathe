@@ -20,8 +20,6 @@ namespace SingularityLathe.Forge.StellarForge.Services
             planet.Atmosphere = GetRandomAtmosphere(rnd);
             planet.Biosphere = GetRandomBiosphere(rnd);
 
-            planet.ChildBodies.Add(new Asteroid());
-
             return this;
         }
 

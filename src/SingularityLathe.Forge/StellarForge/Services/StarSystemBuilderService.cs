@@ -9,13 +9,16 @@ namespace SingularityLathe.Forge.StellarForge.Services
     public class StarSystemBuilderService
     {
         private readonly PlanetBuilderService planetBuilderService = null;
+        private readonly AnomalyGeneratorService anomalyGeneratorService = null;
         private StarSystem starSystem = new StarSystem();
         private readonly Random rnd = null;
 
-        public StarSystemBuilderService(Random random, PlanetBuilderService planetBuilderService)
+        public StarSystemBuilderService(Random random, PlanetBuilderService planetBuilderService, AnomalyGeneratorService anomalyGeneratorService)
         {
             rnd = random;
             this.planetBuilderService = planetBuilderService;
+            this.anomalyGeneratorService = anomalyGeneratorService;
+
         }
 
         public StarSystemBuilderService GenerateStar()
@@ -51,6 +54,19 @@ namespace SingularityLathe.Forge.StellarForge.Services
             system.ForEach((x => { x.Name = starSystem.Designation + "-" + y++; }));
 
             starSystem.SystemStar.ChildBodies = system;
+            
+            var bodies = this.starSystem.SystemStar.Flatten().ToList();
+
+            for (int i = 0; i < rnd.Next(4); i++)
+            {
+
+                var body = bodies[rnd.Next(bodies.Count())];
+
+                anomalyGeneratorService.SetBody(body.Name);
+
+                body.Anomalies
+                    .Add(anomalyGeneratorService.GenerateAdventure());
+            }
 
             return this;
         }

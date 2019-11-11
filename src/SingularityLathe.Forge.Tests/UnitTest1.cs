@@ -3,6 +3,7 @@ using Moq;
 using System;
 using SingularityLathe.Forge.StellarForge.Services;
 using System.Linq;
+using SingularityLathe.RadLibs;
 
 namespace SingularityLathe.Forge.Tests
 {
@@ -32,7 +33,7 @@ namespace SingularityLathe.Forge.Tests
         {
             var rnd = new Random(123);
 
-            var systemGen = new StarSystemBuilderService(rnd, new PlanetBuilderService(rnd));
+            var systemGen = new StarSystemBuilderService(rnd, new PlanetBuilderService(rnd), new AnomalyGeneratorService(new RadLibService(new RadLibConfiguration() { RandomSeed = rnd.Next()}), rnd));
 
             var system = systemGen.GenerateStar().GenerateSystem().Build();
 
@@ -44,7 +45,7 @@ namespace SingularityLathe.Forge.Tests
         {
             var rnd = new Random(1);
 
-            var systemGen = new StarSystemBuilderService(rnd, new PlanetBuilderService(rnd));
+            var systemGen = new StarSystemBuilderService(rnd, new PlanetBuilderService(rnd), new AnomalyGeneratorService(new RadLibService(new RadLibConfiguration() { RandomSeed = rnd.Next() }),rnd));
 
             var system = systemGen.GenerateStar().GenerateSystem().Build();
 

@@ -1,19 +1,21 @@
 ﻿using SingularityLathe.RadLibs;
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Text;
 
-namespace SingularityLathe.Forge.StellarForge
+namespace SingularityLathe.Forge.StellarForge.Services
 {
-    internal class AnomalyGeneratorService
+    public class AnomalyGeneratorService
     {
         private readonly RadLibService madLibService = null;
         private readonly List<string> templates = new List<string>();
+        private readonly Random random = null;
 
-
-        public AnomalyGeneratorService(RadLibService radLibService)
+        public AnomalyGeneratorService(RadLibService radLibService, Random random)
         {
             this.madLibService = radLibService;
+            this.random = random;
 
             templates.Add("A [[ANOMALYTYPE]] source was detected on the surface of [[BODY]].  It is unusual for what appears to be a natural source.  However, a [[HAZARD]] is detected nearby.");
             templates.Add("A navigational beacon was detected in orbit around [[BODY]], the message is being distorted by [[ANOMALYTYPE]] interference.  But what is coming through is disturbing.");
@@ -34,6 +36,43 @@ namespace SingularityLathe.Forge.StellarForge
 
             Authority.Values.Add("MCR Navy");
             Authority.Values.Add("UNN Government");
+
+            madLibService.RadLibTagDictionaries.Add(Hazards);
+            madLibService.RadLibTagDictionaries.Add(Authority);
+            madLibService.RadLibTagDictionaries.Add(Types);
+        }
+
+        public void SetBody(string body)
+        {
+            var bodyDict = madLibService.RadLibTagDictionaries.FirstOrDefault(x => x.Name == "BODY");
+            if (bodyDict != null)
+            {
+                madLibService.RadLibTagDictionaries.Remove(bodyDict);
+            }
+
+            bodyDict = new RadLibTagDictionary("BODY");
+
+            bodyDict.Values.Add(body);
+
+            madLibService.RadLibTagDictionaries.Add(bodyDict);
+        }
+
+        public string GetRandomTemplate()
+        {
+            return templates[random.Next(templates.Count())];
+        }
+
+        public string GenerateAdventure()
+        {
+            return GenerateAdventure(GetRandomTemplate());
+        }
+
+        public string GenerateAdventure(string adventure)
+        {
+
+            var processedAdventure = madLibService.ProcessMadLibRandom(adventure);
+
+            return processedAdventure;
         }
     }
 }

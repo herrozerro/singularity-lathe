@@ -11,7 +11,7 @@ namespace SingularityLathe.Forge.StellarForge
         public int OrbitOrder { get; set; }
         public StellarBodyType StellarBodyType { get; protected set; }
         public List<IStellarBody> ChildBodies { get; set; } = new List<IStellarBody>();
-        public List<string> Anomalies { get; set; }
+        public List<string> Anomalies { get; set; } = new List<string>();
 
 
         public IEnumerable<IStellarBody> Flatten()

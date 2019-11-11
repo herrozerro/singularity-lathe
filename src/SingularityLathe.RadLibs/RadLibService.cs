@@ -34,7 +34,7 @@ namespace SingularityLathe.RadLibs
 
                 replace = madlib.Values[rnd.Next(madlib.Values.Count)];
 
-                template = regex.Replace(template, replace, 1);
+                template = template.Replace(m.Value, replace);
             }
 
             return template;
