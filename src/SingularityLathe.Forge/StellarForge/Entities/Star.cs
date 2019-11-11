@@ -6,13 +6,12 @@ using System.Text;
 
 namespace SingularityLathe.Forge.StellarForge
 {
-    public class Star : IStellarBody
+    public class Star : StellarBodyBase
     {
-        public string Name { get; set; }
-        public int OrbitOrder { get; set; }
-        public StellarBodyType StellarBodyType { get { return StellarBodyType.STAR; } }
-        public List<IStellarBody> ChildBodies { get; set; }
-        public List<string> Anomalies { get; set; }
+        public Star()
+        {
+            StellarBodyType = StellarBodyType.STAR;
+        }
 
         public decimal StellarMass { get; set; }
         public decimal EffectiveTemp { get; set; }

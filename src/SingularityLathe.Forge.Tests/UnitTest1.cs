@@ -2,6 +2,7 @@ using NUnit.Framework;
 using Moq;
 using System;
 using SingularityLathe.Forge.StellarForge.Services;
+using System.Linq;
 
 namespace SingularityLathe.Forge.Tests
 {
@@ -37,5 +38,19 @@ namespace SingularityLathe.Forge.Tests
 
             Assert.True(system.Designation != null);
         } 
+
+        [Test]
+        public void StellarGenFlatten()
+        {
+            var rnd = new Random(1);
+
+            var systemGen = new StarSystemBuilderService(rnd, new PlanetBuilderService(rnd));
+
+            var system = systemGen.GenerateStar().GenerateSystem().Build();
+
+            var nodes = system.SystemStar.Flatten().ToList();
+
+            Assert.True(system.Designation != null);
+        }
     }
 }

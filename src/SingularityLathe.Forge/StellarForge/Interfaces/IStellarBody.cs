@@ -11,5 +11,7 @@ namespace SingularityLathe.Forge.StellarForge
         StellarBodyType StellarBodyType { get; }
         List<IStellarBody> ChildBodies { get; set; }
         List<string> Anomalies { get; set; }
+
+        IEnumerable<IStellarBody> Flatten();
     }
 }

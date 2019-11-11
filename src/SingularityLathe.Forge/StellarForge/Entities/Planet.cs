@@ -3,13 +3,12 @@ using System.Text;
 
 namespace SingularityLathe.Forge.StellarForge
 {
-    public class Planet : IStellarBody
+    public class Planet : StellarBodyBase
     {
-        public string Name { get; set; }
-        public int OrbitOrder { get; set; }
-        public StellarBodyType StellarBodyType { get { return StellarBodyType.PLANET; } }
-        public List<IStellarBody> ChildBodies { get; set; }
-        public List<string> Anomalies { get; set; }
+        public Planet()
+        {
+            StellarBodyType = StellarBodyType.PLANET;
+        }
 
         public Atmosphere Atmosphere { get; set; }
 

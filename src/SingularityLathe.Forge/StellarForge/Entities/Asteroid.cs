@@ -4,15 +4,11 @@ using System.Text;
 
 namespace SingularityLathe.Forge.StellarForge
 {
-    public class Asteroid : IStellarBody
+    public class Asteroid : StellarBodyBase, IStellarBody
     {
-        public string Name { get; set; }
-        public int OrbitOrder { get; set; }
-
-        public StellarBodyType StellarBodyType { get { return StellarBodyType.ASTEROID; } }
-
-        public List<IStellarBody> ChildBodies { get; set; }
-
-        public List<string> Anomalies { get; set; }
+        public Asteroid()
+        {
+            StellarBodyType = StellarBodyType.ASTEROID;
+        }
     }
 }
