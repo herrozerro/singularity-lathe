@@ -50,14 +50,19 @@ namespace SingularityLathe.Forge.StellarForge.Services
                 system.Add(planetBuilderService.BuildPlanet());
 
             }
+
             var y = 1;
-            system.ForEach((x => { x.Name = starSystem.Designation + "-" + y++; }));
+            system.ForEach((x =>
+            {
+                x.OrbitOrder = y;
+                x.Name = starSystem.Designation + "-" + y++;
+            }));
 
             starSystem.SystemStar.ChildBodies = system;
-            
+
             var bodies = this.starSystem.SystemStar.Flatten().ToList();
 
-            for (int i = 0; i < rnd.Next(4); i++)
+            for (int i = 0; i < rnd.Next(1, 4); i++)
             {
 
                 var body = bodies[rnd.Next(bodies.Count())];
