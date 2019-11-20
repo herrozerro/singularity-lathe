@@ -29,7 +29,8 @@ namespace SingularityLathe.Web
             services.AddControllersWithViews();
 
             services.AddSingleton<Random>();
-            services.AddTransient(s=>new RadLibService(new RadLibConfiguration()));
+            services.AddTransient(s=> new RadLibConfiguration());
+            services.AddTransient<RadLibService>();
             services.AddTransient<AdventureGeneratorService>();
             services.AddTransient<AnomalyGeneratorService>();
             services.AddTransient<PlanetBuilderService>();
