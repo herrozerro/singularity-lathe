@@ -18,7 +18,7 @@ else
         <li>Stellar Mass: @starSystem.SystemStar.StellarMass</li>
     </ul>
     <p>Child Bodies</p>
-    <table>
+    <table class="table table-responsive-sm">
         <tr>
             <th>Details</th>
             <th>Name</th>
@@ -39,8 +39,8 @@ else
                     <td>@cp.Tempature.Description</td>
                     <td>@cp.Atmosphere.AtmosphereType</td>
                     <td>@cp.Biosphere.Description</td>
-                    <td>@cp.Population.Description</td>
-                    <td>@cp.TechLevel.Description</td>
+                    <td>@cp?.Population?.Description</td>
+                    <td>@cp?.TechLevel?.Description</td>
                 </tr>
             }
 

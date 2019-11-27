@@ -15,6 +15,7 @@ using SingularityLathe.Forge.StellarForge.Services;
 using SingularityLathe.RadLibs;
 using ElectronNET.API;
 using Blazored.Modal;
+using ElectronNET.API.Entities;
 
 namespace SingularityLathe.Blazor
 {
@@ -72,7 +73,11 @@ namespace SingularityLathe.Blazor
                 endpoints.MapFallbackToPage("/_Host");
             });
 
-            Task.Run(async () => await Electron.WindowManager.CreateWindowAsync());
+            Task.Run(async () => await Electron.WindowManager.CreateWindowAsync(new BrowserWindowOptions(){
+                Title = "Singularity Lathe",
+                Width = 1600,
+                Height = 800
+            }));
         }
     }
 }
