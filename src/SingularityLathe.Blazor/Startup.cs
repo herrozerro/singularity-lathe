@@ -13,6 +13,7 @@ using SingularityLathe.Blazor.Data;
 using SingularityLathe.Forge.AdventureForge;
 using SingularityLathe.Forge.StellarForge.Services;
 using SingularityLathe.RadLibs;
+using ElectronNET.API;
 
 namespace SingularityLathe.Blazor
 {
@@ -67,6 +68,8 @@ namespace SingularityLathe.Blazor
                 endpoints.MapBlazorHub();
                 endpoints.MapFallbackToPage("/_Host");
             });
+
+            Task.Run(async () => await Electron.WindowManager.CreateWindowAsync());
         }
     }
 }
