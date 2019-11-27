@@ -15,7 +15,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SingularityLathe.RadLibs", 
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SingularityLathe.Web", "SingularityLathe.Web\SingularityLathe.Web.csproj", "{5618D7EC-BD78-415F-A401-6BB87BFE1429}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SingularityLathe.Blazor", "SingularityLathe.Blazor\SingularityLathe.Blazor.csproj", "{988961F1-9372-426A-A48E-F74A2E7ABDCD}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SingularityLathe.Blazor", "SingularityLathe.Blazor\SingularityLathe.Blazor.csproj", "{988961F1-9372-426A-A48E-F74A2E7ABDCD}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

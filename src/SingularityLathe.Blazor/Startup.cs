@@ -14,6 +14,7 @@ using SingularityLathe.Forge.AdventureForge;
 using SingularityLathe.Forge.StellarForge.Services;
 using SingularityLathe.RadLibs;
 using ElectronNET.API;
+using Blazored.Modal;
 
 namespace SingularityLathe.Blazor
 {
@@ -42,6 +43,8 @@ namespace SingularityLathe.Blazor
             services.AddTransient<PlanetBuilderService>();
             services.AddTransient<MoonBuilderService>();
             services.AddTransient<StarSystemBuilderService>();
+
+            services.AddBlazoredModal();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

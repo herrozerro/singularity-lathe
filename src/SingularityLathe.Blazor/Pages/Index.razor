@@ -1,5 +1,68 @@
 ﻿@page "/"
+@inject StarSystemBuilderService systemBuilder
+@inject IModalService modalService
 
-<h1>Hello, world!</h1>
+<button class="btn btn-primary" @onclick="@GenerateSystem">Generate Star System!</button>
 
-Welcome to your new app.
+@if (starSystem == null)
+{
+    <span>Click Generate to create a system!</span>
+}
+else
+{
+    <h3>Designation: @starSystem.SystemStar.Name</h3>
+    <ul>
+        <li>Class: @starSystem.SystemStar.StarClass.Class</li>
+        <li>Chromaticity: @starSystem.SystemStar.StarClass.Chromaticity</li>
+        <li>Effecting Temp: @(starSystem.SystemStar.EffectiveTemp)K</li>
+        <li>Stellar Mass: @starSystem.SystemStar.StellarMass</li>
+    </ul>
+    <p>Child Bodies</p>
+    <table>
+        <tr>
+            <th>Details</th>
+            <th>Name</th>
+            <th>Tempature</th>
+            <th>Atmosphere</th>
+            <th>Biosphere</th>
+            <th>Population</th>
+            <th>Tech Level</th>
+        </tr>
+        @foreach (var cb in starSystem.SystemStar.ChildBodies)
+        {
+            if (cb is Planet)
+            {
+                var cp = (Planet)cb;
+                <tr>
+                    <td><button @onclick="@(()=> ShowPlanetModal(cp))">Details</button></td>
+                    <td>@cp.Name</td>
+                    <td>@cp.Tempature.Description</td>
+                    <td>@cp.Atmosphere.AtmosphereType</td>
+                    <td>@cp.Biosphere.Description</td>
+                    <td>@cp.Population.Description</td>
+                    <td>@cp.TechLevel.Description</td>
+                </tr>
+            }
+
+        }
+    </table>
+}
+
+
+@code {
+    StarSystem starSystem = null;
+
+    private void GenerateSystem()
+    {
+        starSystem = systemBuilder.GenerateStar().GenerateSystem().Build();
+    }
+
+    private void ShowPlanetModal(Planet p)
+    {
+        Console.WriteLine(p.Name);
+
+        var modalParameters = new ModalParameters();
+        modalParameters.Add("PlanetInfo", p);
+        modalService.Show(p.Name, typeof(Components.PlanetInfo), modalParameters);
+    }
+}
