@@ -1,0 +1,52 @@
+﻿@inject IModalService modalService
+
+<h3>Designation: @starSystem.SystemStar.Name</h3>
+<ul>
+    <li>Class: @starSystem.SystemStar.StarClass.Class</li>
+    <li>Chromaticity: @starSystem.SystemStar.StarClass.Chromaticity</li>
+    <li>Effecting Temp: @(starSystem.SystemStar.EffectiveTemp)K</li>
+    <li>Stellar Mass: @starSystem.SystemStar.StellarMass</li>
+</ul>
+<p>Child Bodies</p>
+<table class="table table-responsive-sm">
+    <tr>
+        <th>Details</th>
+        <th>Name</th>
+        <th>Tempature</th>
+        <th>Atmosphere</th>
+        <th>Biosphere</th>
+        <th>Population</th>
+        <th>Tech Level</th>
+    </tr>
+    @foreach (var cb in starSystem.SystemStar.ChildBodies)
+    {
+        if (cb is Planet)
+        {
+            var cp = (Planet)cb;
+            <tr>
+                <td><button @onclick="@(()=> ShowPlanetModal(cp))">Details</button></td>
+                <td>@cp.Name</td>
+                <td>@cp.Tempature.Description</td>
+                <td>@cp.Atmosphere.AtmosphereType</td>
+                <td>@cp.Biosphere.Description</td>
+                <td>@cp?.Population?.Description</td>
+                <td>@cp?.TechLevel?.Description</td>
+            </tr>
+        }
+
+    }
+</table>
+
+@code {
+    [CascadingParameter(Name = "starSystem")]
+    public StarSystem starSystem { get; set; }
+
+    private void ShowPlanetModal(Planet p)
+    {
+        Console.WriteLine(p.Name);
+
+        var modalParameters = new ModalParameters();
+        modalParameters.Add("PlanetInfo", p);
+        modalService.Show(p.Name, typeof(Components.PlanetInfo), modalParameters);
+    }
+}
