@@ -9,7 +9,6 @@ using Microsoft.AspNetCore.HttpsPolicy;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
-using SingularityLathe.Blazor.Data;
 using SingularityLathe.Forge.AdventureForge;
 using SingularityLathe.Forge.StellarForge.Services;
 using SingularityLathe.RadLibs;
@@ -34,7 +33,6 @@ namespace SingularityLathe.Blazor
         {
             services.AddRazorPages();
             services.AddServerSideBlazor();
-            services.AddSingleton<WeatherForecastService>();
             
             services.AddSingleton<Random>();
             services.AddTransient(s => new RadLibConfiguration());
