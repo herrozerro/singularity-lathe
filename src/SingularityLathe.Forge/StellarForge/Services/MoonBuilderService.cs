@@ -16,9 +16,9 @@ namespace SingularityLathe.Forge.StellarForge.Services
 
         public MoonBuilderService GeneratePhysicalProperties()
         {
-            Moon.Tempature = GetRandomTemp(rnd);
-            Moon.Atmosphere = GetRandomAtmosphere(rnd);
-            Moon.BioSphere = GetRandomBiosphere(rnd);
+            Moon.Tempature = GetRandomTemp();
+            Moon.Atmosphere = GetRandomAtmosphere();
+            Moon.BioSphere = GetRandomBiosphere();
 
             return this;
         }
@@ -33,23 +33,15 @@ namespace SingularityLathe.Forge.StellarForge.Services
             return this;
         }
 
-        private Tempature GetRandomTemp(Random rnd)
+        private Tempature GetRandomTemp()
         {
             return Tempature.GetRandomTemperature(rnd);
         }
-        private BioSphere GetRandomBiosphere(Random rnd)
+        private BioSphere GetRandomBiosphere()
         {
             return BioSphere.GetRandomBiosphere(rnd);
         }
-        private Population GetRandomPopulation(Random rnd)
-        {
-            return Population.GetRandomPopulation(rnd);
-        }
-        private TechLevel GetRandomTechLevel(Random rnd)
-        {
-            return TechLevel.GetRandomPopulation(rnd);
-        }
-        private Atmosphere GetRandomAtmosphere(Random rnd)
+        private Atmosphere GetRandomAtmosphere()
         {
             return Atmosphere.GetRandomAtmosphere(rnd);
         }

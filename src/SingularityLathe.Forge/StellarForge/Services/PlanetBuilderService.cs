@@ -8,17 +8,19 @@ namespace SingularityLathe.Forge.StellarForge.Services
     {
         private Planet planet = new Planet();
         private readonly Random rnd = null;
+        private readonly MoonBuilderService moonBuilderService = null;
 
-        public PlanetBuilderService(Random random)
+        public PlanetBuilderService(Random random, MoonBuilderService moonBuilderService)
         {
             rnd = random;
+            this.moonBuilderService = moonBuilderService;
         }
 
         public PlanetBuilderService GeneratePhysicalProperties()
         {
-            planet.Tempature = GetRandomTemp(rnd);
-            planet.Atmosphere = GetRandomAtmosphere(rnd);
-            planet.Biosphere = GetRandomBiosphere(rnd);
+            planet.Tempature = GetRandomTemp();
+            planet.Atmosphere = GetRandomAtmosphere();
+            planet.Biosphere = GetRandomBiosphere();
 
             return this;
         }
@@ -27,30 +29,45 @@ namespace SingularityLathe.Forge.StellarForge.Services
         {
             if (planet.Biosphere.Description != "No native biosphere")
             {
-                planet.Population = GetRandomPopulation(rnd);
-                planet.TechLevel = GetRandomTechLevel(rnd);
+                planet.Population = GetRandomPopulation();
+                planet.TechLevel = GetRandomTechLevel();
             }
 
             return this;
         }
 
-        private Tempature GetRandomTemp(Random rnd)
+        public PlanetBuilderService GenerateMoons()
+        {
+            int maxMoons = 2; //this should change depending on planet type, IE: Gas Giants should have more possible moons
+
+            int moons = rnd.Next(maxMoons + 1);
+
+            for (int i = 0; i < moons; i++)
+            {
+                moonBuilderService.GenerateMoon();
+                planet.ChildBodies.Add(moonBuilderService.BuildMoon());
+            }
+
+            return this;
+        }
+
+        private Tempature GetRandomTemp()
         {
             return Tempature.GetRandomTemperature(rnd);
         }
-        private BioSphere GetRandomBiosphere(Random rnd)
+        private BioSphere GetRandomBiosphere()
         {
             return BioSphere.GetRandomBiosphere(rnd);
         }
-        private Population GetRandomPopulation(Random rnd)
+        private Population GetRandomPopulation()
         {
             return Population.GetRandomPopulation(rnd);
         }
-        private TechLevel GetRandomTechLevel(Random rnd)
+        private TechLevel GetRandomTechLevel()
         {
             return TechLevel.GetRandomPopulation(rnd);
         }
-        private Atmosphere GetRandomAtmosphere(Random rnd)
+        private Atmosphere GetRandomAtmosphere()
         {
             return Atmosphere.GetRandomAtmosphere(rnd);
         }
@@ -59,6 +76,7 @@ namespace SingularityLathe.Forge.StellarForge.Services
         {
             GeneratePhysicalProperties();
             GenerateLife();
+            GenerateMoons();
         }
 
         public Planet BuildPlanet()

@@ -37,11 +37,21 @@ namespace SingularityLathe.Forge.StellarForge.Services
             Authority.Values.Add("MCR Navy");
             Authority.Values.Add("UNN Government");
 
+            //Add default body
+            var Body = new RadLibTagDictionary("BODY");
+            Body.Values.Add("UNKNOWN ENTITY");
+
             madLibService.RadLibTagDictionaries.Add(Hazards);
             madLibService.RadLibTagDictionaries.Add(Authority);
             madLibService.RadLibTagDictionaries.Add(Types);
+            madLibService.RadLibTagDictionaries.Add(Body);
+            
         }
 
+        /// <summary>
+        /// Sets the body name that the generator will use for anomalies generated
+        /// </summary>
+        /// <param name="body">Name of the body to be used.</param>
         public void SetBody(string body)
         {
             var bodyDict = madLibService.RadLibTagDictionaries.FirstOrDefault(x => x.Name == "BODY");
@@ -69,7 +79,6 @@ namespace SingularityLathe.Forge.StellarForge.Services
 
         public string GenerateAdventure(string adventure)
         {
-
             var processedAdventure = madLibService.ProcessMadLibRandom(adventure);
 
             return processedAdventure;

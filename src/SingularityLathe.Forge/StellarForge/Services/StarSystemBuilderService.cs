@@ -51,20 +51,25 @@ namespace SingularityLathe.Forge.StellarForge.Services
 
             }
 
+            //put designations on planets and moons
             var y = 1;
             system.ForEach((x =>
             {
                 x.OrbitOrder = y;
                 x.Name = starSystem.Designation + "-" + y++;
+                
+                var m = 1;
+                x.ChildBodies.ForEach(z => {
+                    z.Name = x.Name + "-" + m++;
+                });
             }));
 
             starSystem.SystemStar.ChildBodies = system;
 
+            //get all bodies and generate anamolies randomly
             var bodies = this.starSystem.SystemStar.Flatten().ToList();
-
             for (int i = 0; i < rnd.Next(1, 4); i++)
             {
-
                 var body = bodies[rnd.Next(bodies.Count())];
 
                 anomalyGeneratorService.SetBody(body.Name);
