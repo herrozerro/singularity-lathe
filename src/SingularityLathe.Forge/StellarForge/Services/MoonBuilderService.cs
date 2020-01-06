@@ -8,10 +8,11 @@ namespace SingularityLathe.Forge.StellarForge.Services
     {
         private Moon Moon = new Moon();
         private readonly Random rnd = null;
-
-        public MoonBuilderService(Random random)
+        private readonly StellarForgeConfiguration stellarForgeConfiguration = null;
+        public MoonBuilderService(Random random, StellarForgeConfiguration stellarForgeConfiguration)
         {
             rnd = random;
+            this.stellarForgeConfiguration = stellarForgeConfiguration;
         }
 
         public MoonBuilderService GeneratePhysicalProperties()

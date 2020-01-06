@@ -10,15 +10,16 @@ namespace SingularityLathe.Forge.StellarForge.Services
     {
         private readonly PlanetBuilderService planetBuilderService = null;
         private readonly AnomalyGeneratorService anomalyGeneratorService = null;
+        private readonly StellarForgeConfiguration stellarForgeConfiguration = null;
         private StarSystem starSystem = new StarSystem();
         private readonly Random rnd = null;
 
-        public StarSystemBuilderService(Random random, PlanetBuilderService planetBuilderService, AnomalyGeneratorService anomalyGeneratorService)
+        public StarSystemBuilderService(Random random, PlanetBuilderService planetBuilderService, AnomalyGeneratorService anomalyGeneratorService, StellarForgeConfiguration stellarForgeConfiguration)
         {
             rnd = random;
             this.planetBuilderService = planetBuilderService;
             this.anomalyGeneratorService = anomalyGeneratorService;
-
+            this.stellarForgeConfiguration = stellarForgeConfiguration;
         }
 
         public StarSystemBuilderService GenerateStar()

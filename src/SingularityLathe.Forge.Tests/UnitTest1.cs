@@ -18,9 +18,9 @@ namespace SingularityLathe.Forge.Tests
         public void AdventureForgeTest()
         {
             //Arrange
-            var madlibs = new RadLibs.RadLibService(new RadLibs.RadLibConfiguration() { RandomSeed = 1});
+            var madlibs = new RadLibs.RadLibService(new RadLibs.RadLibConfiguration() { RandomSeed = 1 });
             var adventure = new AdventureForge.AdventureGeneratorService(new Random(), madlibs);
-            
+
             //Act
             var template = adventure.GenerateAdventure();
 
@@ -32,20 +32,20 @@ namespace SingularityLathe.Forge.Tests
         public void StellarGenTest()
         {
             var rnd = new Random(123);
-
-            var systemGen = new StarSystemBuilderService(rnd, new PlanetBuilderService(rnd, new MoonBuilderService(rnd)), new AnomalyGeneratorService(new RadLibService(new RadLibConfiguration() { RandomSeed = rnd.Next()}), rnd));
+            var config = new StellarForge.StellarForgeConfiguration();
+            var systemGen = new StarSystemBuilderService(rnd, new PlanetBuilderService(rnd, new MoonBuilderService(rnd, config), config), new AnomalyGeneratorService(new RadLibService(new RadLibConfiguration() { RandomSeed = rnd.Next() }), rnd), config);
 
             var system = systemGen.GenerateStar().GenerateSystem().Build();
 
             Assert.True(system.Designation != null);
-        } 
+        }
 
         [Test]
         public void StellarGenFlatten()
         {
             var rnd = new Random(1);
-
-            var systemGen = new StarSystemBuilderService(rnd, new PlanetBuilderService(rnd, new MoonBuilderService(rnd)), new AnomalyGeneratorService(new RadLibService(new RadLibConfiguration() { RandomSeed = rnd.Next() }),rnd));
+            var config = new StellarForge.StellarForgeConfiguration();
+            var systemGen = new StarSystemBuilderService(rnd, new PlanetBuilderService(rnd, new MoonBuilderService(rnd, config), config), new AnomalyGeneratorService(new RadLibService(new RadLibConfiguration() { RandomSeed = rnd.Next() }), rnd), config);
 
             var system = systemGen.GenerateStar().GenerateSystem().Build();
 

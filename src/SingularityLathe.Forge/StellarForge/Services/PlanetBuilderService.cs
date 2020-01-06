@@ -9,11 +9,14 @@ namespace SingularityLathe.Forge.StellarForge.Services
         private Planet planet = new Planet();
         private readonly Random rnd = null;
         private readonly MoonBuilderService moonBuilderService = null;
+        private readonly StellarForgeConfiguration stellarForgeConfiguration = null;
 
-        public PlanetBuilderService(Random random, MoonBuilderService moonBuilderService)
+
+        public PlanetBuilderService(Random random, MoonBuilderService moonBuilderService, StellarForgeConfiguration stellarForgeConfiguration)
         {
             rnd = random;
             this.moonBuilderService = moonBuilderService;
+            this.stellarForgeConfiguration = stellarForgeConfiguration;
         }
 
         public PlanetBuilderService GeneratePhysicalProperties()
@@ -21,20 +24,25 @@ namespace SingularityLathe.Forge.StellarForge.Services
             planet.PlanetaryType = GetRandomPlanetaryType();
             planet.Tempature = GetRandomTemp();
             planet.Atmosphere = GetRandomAtmosphere();
-            planet.Biosphere = GetRandomBiosphere();
 
             return this;
         }
 
-        private PlanetaryType GetRandomPlanetaryType()
-        {
-            return (PlanetaryType)typeof(PlanetaryType).GetRandomEnumValue(rnd);
-        }
-
         public PlanetBuilderService GenerateLife()
         {
+            planet.Biosphere = GetRandomBiosphere();
+
             if (planet.Biosphere.Description != "No native biosphere")
             {
+                //RARE GASGIANT WITH POPULATION AND TECHLEVEL
+                if (planet.PlanetaryType.Description == "GASGIANT")
+                {
+                    if (rnd.Next(stellarForgeConfiguration.Odds_GasGiantLife) != 0)
+                    {
+                        return this;
+                    }
+                }
+
                 planet.Population = GetRandomPopulation();
                 planet.TechLevel = GetRandomTechLevel();
             }
@@ -44,9 +52,15 @@ namespace SingularityLathe.Forge.StellarForge.Services
 
         public PlanetBuilderService GenerateMoons()
         {
-            int maxMoons = 2; //this should change depending on planet type, IE: Gas Giants should have more possible moons
+            int maxMoons = 2;
+            int minMoons = 0;
+            if (planet.PlanetaryType.Description == "GASGIANT")
+            {
+                maxMoons = stellarForgeConfiguration.Maxs_GasGiantMoons;
+                minMoons = stellarForgeConfiguration.Mins_GasGiantMoons;
+            }
 
-            int moons = rnd.Next(maxMoons + 1);
+            int moons = rnd.Next(minMoons,maxMoons + 1);
 
             for (int i = 0; i < moons; i++)
             {
@@ -57,6 +71,10 @@ namespace SingularityLathe.Forge.StellarForge.Services
             return this;
         }
 
+        private PlanetaryType GetRandomPlanetaryType()
+        {
+            return PlanetaryType.GetRandomPlanetaryType(rnd);
+        }
         private Tempature GetRandomTemp()
         {
             return Tempature.GetRandomTemperature(rnd);

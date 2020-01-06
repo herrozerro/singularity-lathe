@@ -63,8 +63,6 @@ namespace SingularityLathe.Forge.StellarForge
                 }
             };
 
-
-
             return atmos;
         }
 
