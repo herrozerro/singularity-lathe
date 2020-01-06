@@ -33,7 +33,7 @@ namespace SingularityLathe.Forge.Tests
         {
             var rnd = new Random(123);
 
-            var systemGen = new StarSystemBuilderService(rnd, new PlanetBuilderService(rnd), new AnomalyGeneratorService(new RadLibService(new RadLibConfiguration() { RandomSeed = rnd.Next()}), rnd));
+            var systemGen = new StarSystemBuilderService(rnd, new PlanetBuilderService(rnd, new MoonBuilderService(rnd)), new AnomalyGeneratorService(new RadLibService(new RadLibConfiguration() { RandomSeed = rnd.Next()}), rnd));
 
             var system = systemGen.GenerateStar().GenerateSystem().Build();
 
@@ -45,7 +45,7 @@ namespace SingularityLathe.Forge.Tests
         {
             var rnd = new Random(1);
 
-            var systemGen = new StarSystemBuilderService(rnd, new PlanetBuilderService(rnd), new AnomalyGeneratorService(new RadLibService(new RadLibConfiguration() { RandomSeed = rnd.Next() }),rnd));
+            var systemGen = new StarSystemBuilderService(rnd, new PlanetBuilderService(rnd, new MoonBuilderService(rnd)), new AnomalyGeneratorService(new RadLibService(new RadLibConfiguration() { RandomSeed = rnd.Next() }),rnd));
 
             var system = systemGen.GenerateStar().GenerateSystem().Build();
 

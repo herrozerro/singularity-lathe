@@ -18,11 +18,17 @@ namespace SingularityLathe.Forge.StellarForge.Services
 
         public PlanetBuilderService GeneratePhysicalProperties()
         {
+            planet.PlanetaryType = GetRandomPlanetaryType();
             planet.Tempature = GetRandomTemp();
             planet.Atmosphere = GetRandomAtmosphere();
             planet.Biosphere = GetRandomBiosphere();
 
             return this;
+        }
+
+        private PlanetaryType GetRandomPlanetaryType()
+        {
+            return (PlanetaryType)typeof(PlanetaryType).GetRandomEnumValue(rnd);
         }
 
         public PlanetBuilderService GenerateLife()

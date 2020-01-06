@@ -47,6 +47,6 @@
 
         var modalParameters = new ModalParameters();
         modalParameters.Add("PlanetInfo", p);
-        modalService.Show(p.Name, typeof(Components.PlanetInfo), modalParameters);
+        modalService.Show<Components.PlanetInfo>(p.Name, modalParameters, new ModalOptions());
     }
 }

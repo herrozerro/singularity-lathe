@@ -67,19 +67,32 @@ namespace SingularityLathe.Forge.StellarForge.Services
             madLibService.RadLibTagDictionaries.Add(bodyDict);
         }
 
+        /// <summary>
+        /// Gets a random Anomaly template from the list of templates.
+        /// </summary>
+        /// <returns>An Anomaly template string.</returns>
         public string GetRandomTemplate()
         {
             return templates[random.Next(templates.Count())];
         }
 
-        public string GenerateAdventure()
+        /// <summary>
+        /// Generates an Anomaly using a random template.
+        /// </summary>
+        /// <returns>An Anomaly string.</returns>
+        public string GenerateAnomaly()
         {
-            return GenerateAdventure(GetRandomTemplate());
+            return GenerateAnomaly(GetRandomTemplate());
         }
 
-        public string GenerateAdventure(string adventure)
+        /// <summary>
+        /// Generates an Anomaly using a provided template
+        /// </summary>
+        /// <param name="template">An Anomaly template</param>
+        /// <returns>An Anomaly string.</returns>
+        public string GenerateAnomaly(string template)
         {
-            var processedAdventure = madLibService.ProcessMadLibRandom(adventure);
+            var processedAdventure = madLibService.ProcessMadLibRandom(template);
 
             return processedAdventure;
         }

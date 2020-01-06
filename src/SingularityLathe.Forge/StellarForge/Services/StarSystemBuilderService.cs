@@ -75,7 +75,7 @@ namespace SingularityLathe.Forge.StellarForge.Services
                 anomalyGeneratorService.SetBody(body.Name);
 
                 body.Anomalies
-                    .Add(anomalyGeneratorService.GenerateAdventure());
+                    .Add(anomalyGeneratorService.GenerateAnomaly());
             }
 
             return this;

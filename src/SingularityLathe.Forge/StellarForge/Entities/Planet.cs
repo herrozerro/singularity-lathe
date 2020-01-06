@@ -10,6 +10,8 @@ namespace SingularityLathe.Forge.StellarForge
             StellarBodyType = StellarBodyType.PLANET;
         }
 
+        public PlanetaryType PlanetaryType { get; set; }
+
         public Atmosphere Atmosphere { get; set; }
 
         public Tempature Tempature { get; set; }
