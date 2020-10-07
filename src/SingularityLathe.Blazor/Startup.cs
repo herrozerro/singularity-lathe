@@ -15,6 +15,7 @@ using SingularityLathe.RadLibs;
 using ElectronNET.API;
 using Blazored.Modal;
 using ElectronNET.API.Entities;
+using SingularityLathe.Forge.StellarForge;
 
 namespace SingularityLathe.Blazor
 {
@@ -41,6 +42,7 @@ namespace SingularityLathe.Blazor
             services.AddTransient<AnomalyGeneratorService>();
             services.AddTransient<PlanetBuilderService>();
             services.AddTransient<MoonBuilderService>();
+            services.AddTransient<StellarForgeConfiguration>();
             services.AddTransient<StarSystemBuilderService>();
 
             services.AddBlazoredModal();
