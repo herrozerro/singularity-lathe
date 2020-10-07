@@ -60,6 +60,18 @@ namespace SingularityLathe.Forge.StellarForge
             var bio = GetBioSpheres().GetRandomWeightedItem(rnd);
             return (BioSphere)bio;
         }
+
+        public static BioSphere GetWeightedBiosphere(double lifeWeight)
+        {
+            //Arbitrary factors that can be changed to make life generally more or less likely
+            const int LIFE_SCALE = 2;
+            const double SHIFT = 0.2;
+
+            Random rnd = new Random();
+            double lifeProbability = lfeWeight * LIFE_SCALE + SHIFT;
+            double roll = rnd.NextDouble();
+            if(roll > )
+        }
     }
 
 
