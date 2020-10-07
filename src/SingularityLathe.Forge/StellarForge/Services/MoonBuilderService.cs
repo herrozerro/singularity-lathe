@@ -19,7 +19,8 @@ namespace SingularityLathe.Forge.StellarForge.Services
         {
             Moon.Tempature = GetRandomTemp();
             Moon.Atmosphere = GetRandomAtmosphere();
-            Moon.BioSphere = GetRandomBiosphere();
+
+            Moon.BioSphere = BioSphere.GetWeightedBiosphere(Moon.Tempature.LifeWeight + Moon.Atmosphere.LifeWeight);
 
             return this;
         }

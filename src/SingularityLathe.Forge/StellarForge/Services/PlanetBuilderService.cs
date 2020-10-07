@@ -30,7 +30,14 @@ namespace SingularityLathe.Forge.StellarForge.Services
 
         public PlanetBuilderService GenerateLife()
         {
-            planet.Biosphere = GetRandomBiosphere();
+            double tempLifeWeight = planet.Tempature.LifeWeight;
+            double atmosphereLifeWeight = planet.Atmosphere.LifeWeight;
+
+            double lifeWeights = tempLifeWeight + atmosphereLifeWeight;
+
+
+
+            planet.Biosphere = BioSphere.GetWeightedBiosphere(lifeWeights);
 
             if (planet.Biosphere.Description != "No native biosphere")
             {
