@@ -63,9 +63,9 @@ namespace SingularityLathe.Forge.StellarForge
 
         public static BioSphere GetWeightedBiosphere(double lifeWeight)
         {
-            const int[] GOOD_BIOS = { 6, 5, 3 };
-            const int[] MEDIUM_BIOS = { 1, 0 };
-            const int[] BAD_BIOS = { 2, 4 };
+            int[] GOOD_BIOS = { 6, 5, 3 };
+            int[] MEDIUM_BIOS = { 1, 0 };
+            int[] BAD_BIOS = { 2, 4 };
 
             //Arbitrary factors that can be changed to make life generally more or less likely
             const double GOOD_THRESHOLD = 0.8;
@@ -77,16 +77,19 @@ namespace SingularityLathe.Forge.StellarForge
             {
                 int bioIndex = rnd.Next(GOOD_BIOS.Length);
                 BioSphere bio = GetBioSpheres()[bioIndex];
+                return bio;
             }
             else if(roll > MEDIUM_THRESHOLD)
             {
                 int bioIndex = rnd.Next(MEDIUM_BIOS.Length);
                 BioSphere bio = GetBioSpheres()[bioIndex];
+                return bio;
             }
             else
             {
                 int bioIndex = rnd.Next(BAD_BIOS.Length);
                 BioSphere bio = GetBioSpheres()[bioIndex];
+                return bio;
             }
         }
     }
