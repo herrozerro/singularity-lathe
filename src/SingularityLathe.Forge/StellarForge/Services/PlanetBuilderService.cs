@@ -37,7 +37,7 @@ namespace SingularityLathe.Forge.StellarForge.Services
 
 
 
-            planet.Biosphere = BioSphere.GetWeightedBiosphere();
+            planet.Biosphere = BioSphere.GetWeightedBiosphere(lifeWeights);
 
             if (planet.Biosphere.Description != "No native biosphere")
             {
