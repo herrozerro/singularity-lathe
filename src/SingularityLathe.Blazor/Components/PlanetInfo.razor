@@ -3,6 +3,31 @@
 <p style="white-space: pre-wrap;">@planet.Atmosphere.AtmosphereType</p>
 <input @bind="planet.Biosphere.Description" />
 
+@if (planet.ChildBodies.Count > 0)
+{
+<p class="mt-3" style="white-space: pre-wrap;">Moons</p>
+<table class="table table-responsive-sm">
+    <tr>
+        <th>Name</th>
+        <th>Temperature</th>
+        <th>Atmosphere</th>
+        <th>Biosphere</th>
+    </tr>
+    @foreach (var cb in planet.ChildBodies)
+    {
+        if (cb is Moon)
+        {
+            var cp = (Moon)cb;
+            <tr>
+                <td>@cp.Name</td>
+                <td>@cp.Tempature.Description</td>
+                <td>@cp.Atmosphere.AtmosphereType</td>
+                <td>@cp.BioSphere.Description</td>
+            </tr>
+        }
+    }
+</table>
+}
 
 @functions {
     [CascadingParameter] ModalParameters Parameters { get; set; }
