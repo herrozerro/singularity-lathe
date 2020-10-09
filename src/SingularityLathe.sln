@@ -5,8 +5,6 @@ VisualStudioVersion = 16.0.29324.140
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SingularityLathe.Forge", "SingularityLathe.Forge\SingularityLathe.Forge.csproj", "{B7E387A0-D722-4F53-9290-CED27198B644}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SingularityLathe.Data", "SingularityLathe.Data\SingularityLathe.Data.csproj", "{B7F21088-AC9B-4110-A6BA-D19AD3373F5B}"
-EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SingularityLathe.Forge.Tests", "SingularityLathe.Forge.Tests\SingularityLathe.Forge.Tests.csproj", "{462BA510-EF4C-4E40-9586-1FCDF0B50096}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SingularityLathe.RadLibs", "SingularityLathe.RadLibs\SingularityLathe.RadLibs.csproj", "{4069A519-14E2-45C3-A6EF-49498006F104}"
@@ -23,10 +21,6 @@ Global
 		{B7E387A0-D722-4F53-9290-CED27198B644}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{B7E387A0-D722-4F53-9290-CED27198B644}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{B7E387A0-D722-4F53-9290-CED27198B644}.Release|Any CPU.Build.0 = Release|Any CPU
-		{B7F21088-AC9B-4110-A6BA-D19AD3373F5B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{B7F21088-AC9B-4110-A6BA-D19AD3373F5B}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{B7F21088-AC9B-4110-A6BA-D19AD3373F5B}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{B7F21088-AC9B-4110-A6BA-D19AD3373F5B}.Release|Any CPU.Build.0 = Release|Any CPU
 		{462BA510-EF4C-4E40-9586-1FCDF0B50096}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{462BA510-EF4C-4E40-9586-1FCDF0B50096}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{462BA510-EF4C-4E40-9586-1FCDF0B50096}.Release|Any CPU.ActiveCfg = Release|Any CPU
