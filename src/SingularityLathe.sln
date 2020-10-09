@@ -3,8 +3,6 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 16
 VisualStudioVersion = 16.0.29324.140
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SingularityLathe.WPF", "SingularityLathe.WPF\SingularityLathe.WPF.csproj", "{B315DAC9-4074-4860-8AB6-97B3DBAC94A9}"
-EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SingularityLathe.Forge", "SingularityLathe.Forge\SingularityLathe.Forge.csproj", "{B7E387A0-D722-4F53-9290-CED27198B644}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SingularityLathe.Data", "SingularityLathe.Data\SingularityLathe.Data.csproj", "{B7F21088-AC9B-4110-A6BA-D19AD3373F5B}"
@@ -12,8 +10,6 @@ EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SingularityLathe.Forge.Tests", "SingularityLathe.Forge.Tests\SingularityLathe.Forge.Tests.csproj", "{462BA510-EF4C-4E40-9586-1FCDF0B50096}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SingularityLathe.RadLibs", "SingularityLathe.RadLibs\SingularityLathe.RadLibs.csproj", "{4069A519-14E2-45C3-A6EF-49498006F104}"
-EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SingularityLathe.Web", "SingularityLathe.Web\SingularityLathe.Web.csproj", "{5618D7EC-BD78-415F-A401-6BB87BFE1429}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SingularityLathe.Blazor", "SingularityLathe.Blazor\SingularityLathe.Blazor.csproj", "{988961F1-9372-426A-A48E-F74A2E7ABDCD}"
 EndProject
@@ -23,10 +19,6 @@ Global
 		Release|Any CPU = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{B315DAC9-4074-4860-8AB6-97B3DBAC94A9}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{B315DAC9-4074-4860-8AB6-97B3DBAC94A9}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{B315DAC9-4074-4860-8AB6-97B3DBAC94A9}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{B315DAC9-4074-4860-8AB6-97B3DBAC94A9}.Release|Any CPU.Build.0 = Release|Any CPU
 		{B7E387A0-D722-4F53-9290-CED27198B644}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{B7E387A0-D722-4F53-9290-CED27198B644}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{B7E387A0-D722-4F53-9290-CED27198B644}.Release|Any CPU.ActiveCfg = Release|Any CPU
@@ -43,10 +35,6 @@ Global
 		{4069A519-14E2-45C3-A6EF-49498006F104}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{4069A519-14E2-45C3-A6EF-49498006F104}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{4069A519-14E2-45C3-A6EF-49498006F104}.Release|Any CPU.Build.0 = Release|Any CPU
-		{5618D7EC-BD78-415F-A401-6BB87BFE1429}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{5618D7EC-BD78-415F-A401-6BB87BFE1429}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{5618D7EC-BD78-415F-A401-6BB87BFE1429}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{5618D7EC-BD78-415F-A401-6BB87BFE1429}.Release|Any CPU.Build.0 = Release|Any CPU
 		{988961F1-9372-426A-A48E-F74A2E7ABDCD}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{988961F1-9372-426A-A48E-F74A2E7ABDCD}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{988961F1-9372-426A-A48E-F74A2E7ABDCD}.Release|Any CPU.ActiveCfg = Release|Any CPU
