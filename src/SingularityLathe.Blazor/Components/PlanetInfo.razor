@@ -33,12 +33,14 @@
 
 @functions {
     [CascadingParameter] ModalParameters Parameters { get; set; }
-    Planet planet { get; set; }
+
+    [Parameter]
+    public Planet planet { get; set; }
 
     protected override void OnInitialized()
     {
         Console.WriteLine("Got In here!");
 
-        planet = Parameters.Get<Planet>("PlanetInfo");
+        //planet = Parameters.Get<Planet>("planet");
     }
 }
