@@ -24,6 +24,8 @@ namespace SingularityLathe.Blazor
 
             builder.Services.AddScoped(sp => new HttpClient { BaseAddress = new Uri(builder.HostEnvironment.BaseAddress) });
 
+            builder.Services.AddBlazoredModal();
+
             builder.Services.AddSingleton<Random>();
             builder.Services.AddTransient(s => new RadLibConfiguration());
             builder.Services.AddTransient<RadLibService>();
@@ -34,7 +36,7 @@ namespace SingularityLathe.Blazor
             builder.Services.AddTransient<StellarForgeConfiguration>();
             builder.Services.AddTransient<StarSystemBuilderService>();
 
-            builder.Services.AddBlazoredModal();
+            
 
             await builder.Build().RunAsync();
         }

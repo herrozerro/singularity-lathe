@@ -11,7 +11,18 @@ else
 {
     <CascadingValue Value="@starSystem" Name="starSystem">
         <StarSystemDetails />
+        @if (starSystem.SystemStar.Flatten().Any(x => x.Anomalies.Count > 1))
+        {
+            var anomalies = starSystem.SystemStar.Flatten().Where(x => x.Anomalies.Count > 0).SelectMany(x => x.Anomalies).ToList();
+            <ul>
+                @foreach (var item in anomalies)
+                {
+                    <li>@item</li>
+                }
+            </ul>
+        }
     </CascadingValue>
+
 
 }
 
