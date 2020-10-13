@@ -24,8 +24,8 @@ jobs:
       run: dotnet publish src/SingularityLathe.Blazor/SingularityLathe.Blazor.csproj -c Release -o release --nologo
     
     # changes the base-tag in index.html from '/' to 'singularity-lathe' to match GitHub Pages repository subdirectory
-    - name: Change base-tag in index.html from / to singularity-lathe
-      run: sed -i 's/<base href="\/" \/>/<base href="\/singularity-lathe\/" \/>/g' release/wwwroot/index.html
+    #- name: Change base-tag in index.html from / to singularity-lathe
+    #  run: sed -i 's/<base href="\/" \/>/<base href="\/singularity-lathe\/" \/>/g' release/wwwroot/index.html
       
     # Add 404 handler
     - name: Copy index to 404
